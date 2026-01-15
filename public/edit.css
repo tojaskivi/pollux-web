@@ -1,0 +1,110 @@
+/* Edit mode styling */
+
+/* Editable element styling */
+[contenteditable="true"] {
+  outline: 2px dashed #3b82f6;
+  outline-offset: 4px;
+  border-radius: 4px;
+  background-color: rgba(59, 130, 246, 0.05);
+  transition: all 0.2s ease;
+  cursor: text;
+}
+
+[contenteditable="true"]:hover {
+  outline-color: #2563eb;
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+[contenteditable="true"]:focus {
+  outline: 2px solid #2563eb;
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+/* Save button */
+#save-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  transition: all 0.3s ease;
+}
+
+#save-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+#save-button:active {
+  transform: translateY(0);
+}
+
+#save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Notification */
+.edit-notification {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease;
+}
+
+.edit-notification.success {
+  background-color: #10b981;
+  color: white;
+}
+
+.edit-notification.error {
+  background-color: #ef4444;
+  color: white;
+}
+
+.edit-notification.info {
+  background-color: #3b82f6;
+  color: white;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Edit mode indicator */
+.edit-mode-indicator {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background-color: #f59e0b;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}

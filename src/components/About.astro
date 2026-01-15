@@ -1,0 +1,18 @@
+---
+interface Props {
+  heading?: string;
+  text?: string;
+}
+
+const {
+  heading = "About Us",
+  text = "We are a company dedicated to creating innovative solutions that help businesses thrive in the digital age."
+} = Astro.props;
+---
+
+<section id="about" class="py-16 px-4">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6 text-center" data-editable="about_heading">{heading}</h2>
+    <p class="text-lg text-gray-700 leading-relaxed" data-editable="about_text">{text}</p>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Services from "../components/Services.astro";
+import Contact from "../components/Contact.astro";
+import Layout from "../layouts/Layout.astro";
+import siteContent from "../content/site.json";
+---
+
+<Layout>
+  <Hero
+    title={siteContent.hero_title}
+    subtitle={siteContent.hero_subtitle}
+    description={siteContent.hero_description}
+  />
+  <About
+    heading={siteContent.about_heading}
+    text={siteContent.about_text}
+  />
+  <Services
+    heading={siteContent.services_heading}
+    text={siteContent.services_text}
+  />
+  <Contact
+    heading={siteContent.contact_heading}
+    email={siteContent.contact_email}
+    phone={siteContent.contact_phone}
+  />
+</Layout>
+
+<script is:inline src="/edit.js"></script>

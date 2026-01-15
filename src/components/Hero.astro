@@ -1,0 +1,32 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+}
+
+const {
+  title = "Hello world",
+  subtitle = "We make stuff work",
+  description = "This is a different text"
+} = Astro.props;
+---
+
+<div id="container">
+  <main>
+    <section id="hero">
+      <div class="flex flex-col items-center justify-center min-h-screen gap-4">
+        <h1 class="" data-editable="hero_title">{title}</h1>
+        <h2 data-editable="hero_subtitle">{subtitle}</h2>
+        <p data-editable="hero_description">{description}</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<style>
+  h1 {
+    font-size: 48px;
+    margin: 0;
+  }
+</style>

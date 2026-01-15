@@ -1,0 +1,22 @@
+{
+  "name": "pollux-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "npm run build && wrangler pages dev dist",
+    "dev:astro": "astro dev",
+    "build": "node scripts/fetch-content.mjs && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "d1:init": "wrangler d1 execute pollux-db --local --file=./scripts/init-d1.sql",
+    "d1:seed": "wrangler d1 execute pollux-db --remote --file=./scripts/init-d1.sql"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.9",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "wrangler": "^4.59.1"
+  }
+}
