@@ -14,8 +14,9 @@ try {
   let content = {};
 
   if (isProduction) {
-    // In Cloudflare Pages build: Fetch from API endpoint
-    const apiUrl = process.env.CF_PAGES_URL || 'https://pollux-web.pages.dev';
+    // In Cloudflare Pages build: Fetch from production API endpoint
+    // Note: Can't use CF_PAGES_URL as it points to the preview deployment being built
+    const apiUrl = process.env.PRODUCTION_URL || 'https://dev-pollux-web.pages.dev';
     const contentUrl = `${apiUrl}/api/content`;
 
     console.log(`📡 Fetching from API: ${contentUrl}`);
