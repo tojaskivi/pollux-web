@@ -7,7 +7,7 @@ compatibility_date = "2024-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "pollux-db"
-database_id = "00000000-0000-0000-0000-000000000000" # Replace with actual ID from: wrangler d1 create pollux-db
+database_id = "2fe30a33-2741-4896-b255-0d02bef7dabf" # Production D1 database
 
 # Note: In Cloudflare Pages dashboard, you must:
 # 1. Go to Settings -> Functions -> D1 database bindings
