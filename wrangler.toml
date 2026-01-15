@@ -1,7 +1,15 @@
+# This wrangler.toml is for local development only
+# Cloudflare Pages handles deployment automatically - DO NOT use wrangler deploy
 name = "pollux-astro"
 compatibility_date = "2024-01-01"
 
+# D1 Database binding
 [[d1_databases]]
 binding = "DB"
 database_name = "pollux-db"
-database_id = "00000000-0000-0000-0000-000000000000" # Placeholder for local dev. Replace with actual ID from: wrangler d1 create pollux-db
+database_id = "00000000-0000-0000-0000-000000000000" # Replace with actual ID from: wrangler d1 create pollux-db
+
+# Note: In Cloudflare Pages dashboard, you must:
+# 1. Go to Settings -> Functions -> D1 database bindings
+# 2. Add binding: "DB" -> select your "pollux-db" database
+# 3. The database_id above is only used for local dev with wrangler pages dev
