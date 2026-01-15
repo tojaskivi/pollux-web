@@ -56,7 +56,21 @@ try {
 } catch (error) {
   console.error('❌ Error fetching content:', error.message);
 
-  // Create empty site.json as fallback
+  // Check if site.json already exists (from git or previous build)
+  const { readFile } = await import('fs/promises');
+  try {
+    const existing = await readFile(OUTPUT_PATH, 'utf-8');
+    const existingContent = JSON.parse(existing);
+
+    if (Object.keys(existingContent).length > 0) {
+      console.log('✅ Using existing site.json with committed content');
+      process.exit(0); // Success - use the existing file
+    }
+  } catch (readError) {
+    // File doesn't exist or is invalid, create empty fallback
+  }
+
+  // Create empty site.json as last resort fallback
   console.log('📝 Creating empty site.json as fallback...');
 
   try {
