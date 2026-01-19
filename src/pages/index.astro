@@ -5,27 +5,33 @@ import Services from "../components/Services.astro";
 import Contact from "../components/Contact.astro";
 import Layout from "../layouts/Layout.astro";
 import siteContent from "../content/site.json";
+import Footer from "../components/Footer.astro";
+import Clients from "../components/Clients.astro";
+import Header from "../components/Header.astro";
 ---
 
 <Layout>
+  <Header />
   <Hero
     title={siteContent.hero_title}
     subtitle={siteContent.hero_subtitle}
     description={siteContent.hero_description}
   />
-  <About
-    heading={siteContent.about_heading}
-    text={siteContent.about_text}
-  />
   <Services
     heading={siteContent.services_heading}
     text={siteContent.services_text}
+  />
+  <About heading={siteContent.about_heading} text={siteContent.about_text} />
+  <Clients
+    heading={siteContent.clients_heading}
+    text={siteContent.clients_text}
   />
   <Contact
     heading={siteContent.contact_heading}
     email={siteContent.contact_email}
     phone={siteContent.contact_phone}
   />
+  <Footer />
 </Layout>
 
 <script is:inline src="/edit.js"></script>

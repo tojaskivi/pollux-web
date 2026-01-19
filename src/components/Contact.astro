@@ -1,29 +1,37 @@
 ---
+import PageHeader from "./PageHeader.astro";
+import TextSection from "./TextSection.astro";
+
+import { heroImage } from "../assets/images";
+
 interface Props {
   heading?: string;
-  email?: string;
-  phone?: string;
+  subheading?: string;
+  textSectionHeading?: string;
+  textSectionContent?: string;
+  text?: string;
 }
 
 const {
-  heading = "Get In Touch",
-  email = "hello@example.com",
-  phone = "+1 (555) 123-4567"
+  heading = "Kontakt",
+  subheading = "För mer information om hur vi kan hjälpa ert projekt.",
+  textSectionHeading = "Info@pollux.se\n+46 (0)70 5327165",
+
+  text = "We offer comprehensive web development, cloud infrastructure setup, and digital transformation consulting.",
 } = Astro.props;
 ---
 
-<section id="contact" class="py-16 px-4">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-3xl font-bold mb-8" data-editable="contact_heading">{heading}</h2>
-    <div class="space-y-4">
-      <p class="text-lg">
-        <span class="font-semibold">Email:</span>
-        <span class="ml-2" data-editable="contact_email">{email}</span>
-      </p>
-      <p class="text-lg">
-        <span class="font-semibold">Phone:</span>
-        <span class="ml-2" data-editable="contact_phone">{phone}</span>
-      </p>
-    </div>
-  </div>
+<section id="contact" class="min-h-screen bg-custom-gray">
+  <PageHeader
+    altText="Contact Image"
+    headingText={heading}
+    subHeadingText={subheading}
+    bgColor="#f4f4f4"
+    blackText={true}
+  />
+  <TextSection textSectionContent={""} grayBackground={true} pageName="Kontakt">
+    <p class="text-4xl">Olle Bjurström (CEO)</p>
+    <p class="text-4xl">olle@pollux.se</p>
+    <p class="text-4xl">+46 (0)70 532 71 65</p>
+  </TextSection>
 </section>

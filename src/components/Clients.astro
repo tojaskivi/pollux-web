@@ -1,0 +1,93 @@
+---
+import PageHeader from "./PageHeader.astro";
+import TextSection from "./TextSection.astro";
+
+import { Image } from "astro:assets";
+import {
+  stockholmExergi,
+  stockholmsHamnar,
+  zanderIngestrom,
+} from "../assets/clients";
+
+interface Props {
+  heading?: string;
+  subheading?: string;
+  textSectionHeading?: string;
+  textSectionContent?: string;
+}
+
+const {
+  heading = "Kunder",
+  subheading = "Vi har en lång erfarenhet att jobba med etablerade kunder",
+  textSectionHeading = "Våra erfarenheter ger bästa kundupplevelsen",
+  textSectionContent = "Våra kunder finns i flera olika branscher, men delar samma mål: att skapa lyckade projekt med långsiktig nytta. Genom vårt engagemang och vår expertis har vi hjälpt dem att förverkliga sina visioner – från idé till verklighet.",
+} = Astro.props;
+---
+
+<section id="clients" class="min-h-screen bg-white">
+  <PageHeader
+    altText="Clients Header Image"
+    headingText={heading}
+    subHeadingText={subheading}
+    bgColor="#1D1D1B"
+  />
+  <TextSection
+    textSectionHeading={textSectionHeading}
+    pageName="Kunder"
+    textSectionContent={textSectionContent}
+  />
+
+  <div
+    class="flex gap-8 flex-col lg:flex-row md:ml-[170px] justify-center md:justify-start"
+  >
+    <article>
+      <Image
+        class="h-24 w-auto object-contain"
+        src={stockholmExergi}
+        alt=""
+        width={600}
+        height={0}
+      />
+      <h3 class="mt-4">Stockholm Exergi</h3>
+      <p>
+        Stockholm Exergi förser stora delar av Stockholmsregionen med energi:
+        fjärrvärme, ibland el & kyla, samt tar hand om avfall och restvärme.
+        Pollux har agerat som huvudprojektledare för åtskilliga
+        investeringsprojekt, från idé till färdig anläggning.
+      </p>
+    </article>
+    <article>
+      <Image
+        class="h-24 w-auto object-contain"
+        src={stockholmsHamnar}
+        alt=""
+        width={600}
+        height={0}
+      />
+      <h3 class="mt-4">Stockholms Hamnar</h3>
+      <p>
+        Stockholms Hamnar sköter och utvecklar Stockholms hamnar och kajer för
+        färje-, kryssnings- och containertrafik samt skärgårdstrafik. Pollux har
+        ansvarat för framtagandet av en förstudie med målsättning att hitta en
+        ny verksamhets-utövare i en del av Norra Värtahamnen.
+      </p>
+    </article>
+    <article>
+      <Image
+        class="h-24 w-auto object-contain"
+        src={zanderIngestrom}
+        alt=""
+        width={600}
+        height={0}
+      />
+      <h3 class="mt-4">Zander & Ingeström</h3>
+      <p>
+        Zander & Ingeström är ett ledande företag inom pump- och värmeteknik som
+        erbjuder produkter och lösningar inom energi- och flödesteknik. Pollux
+        har ansvarat för att hitta nya leverantörer på kritiska komponenter,
+        samt bistått med att utveckla en modulär produktplattform för deras
+        industriella elpannor.
+      </p>
+    </article>
+  </div>
+</section>

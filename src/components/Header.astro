@@ -1,0 +1,24 @@
+---
+import { Image } from "astro:assets";
+import { logo } from "../assets/icons";
+
+interface Props {
+  heading?: string;
+  text?: string;
+}
+---
+
+<header class="fixed top-0 flex justify-between z-10 w-full p-4 max-w-[1920px]">
+  <nav class="grid grid-cols-3 gap-x-8 gap-y-4 items-center">
+    <a href="#" class="text-white mix-blend-difference">Pollux</a>
+    <a href="#services" class="text-white mix-blend-difference">Konsulterande</a
+    >
+    <a href="#about" class="text-white mix-blend-difference">Om Pollux</a>
+    <a href="#clients" class="col-start-2 text-white mix-blend-difference"
+      >Kunder</a
+    >
+    <a href="#contact" class="text-white mix-blend-difference">Kontakt</a>
+  </nav>
+
+  <Image src={logo} alt="Pollux Logo" width={0} height={54} />
+</header>

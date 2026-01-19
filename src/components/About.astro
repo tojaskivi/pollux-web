@@ -1,18 +1,34 @@
 ---
+import PageHeader from "./PageHeader.astro";
+import TextSection from "./TextSection.astro";
+
+import { aboutImage } from "../assets/images";
+
 interface Props {
   heading?: string;
-  text?: string;
+  subheading?: string;
+  textSectionHeading?: string;
+  textSectionContent?: string;
 }
 
 const {
-  heading = "About Us",
-  text = "We are a company dedicated to creating innovative solutions that help businesses thrive in the digital age."
+  heading = "Om Pollux",
+  subheading = "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+  textSectionHeading = "Vårt engagemang utmärker oss",
+  textSectionContent = "Pollux startade 2017 av erfarna projektledningskonsulter som alla delar filosofin att framgångsrika industriprojekt inte bara bygger på teknik och struktur, utan på människors förmåga att skapa bestående värden. När vi tar oss an ett uppdrag, vare sig det gäller att förverkliga en ny industrianläggning, modernisera en befintlig produktion eller genomföra en utredande förstudie, så tar vi ansvar för hela projektets livscykel.\n\nGenom åren har vi haft förmånen att samarbeta med företag som delar vår syn på att långsiktig affärsnytta uppstår när människor får rätt förutsättningar att bidra med engagemang, kompetens och ansvar. Det är så visioner blir till verklighet och värde skapas. Utifrån det perspektivet är vår ambition att vara en självklar del av den förändring som formar svensk industri, där tekniska framsteg och värderingsstyrda arbetssätt går hand i hand.",
 } = Astro.props;
 ---
 
-<section id="about" class="py-16 px-4">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-6 text-center" data-editable="about_heading">{heading}</h2>
-    <p class="text-lg text-gray-700 leading-relaxed" data-editable="about_text">{text}</p>
-  </div>
+<section id="about" class="min-h-screen bg-custom-gray">
+  <PageHeader
+    imageSrc={aboutImage}
+    altText="About Us Header Image"
+    headingText={heading}
+    subHeadingText={subheading}
+  />
+  <TextSection
+    textSectionHeading={textSectionHeading}
+    textSectionContent={textSectionContent}
+    grayBackground={true}
+  />
 </section>

@@ -1,18 +1,59 @@
 ---
+import CardSection from "./CardSection.astro";
+import PageHeader from "./PageHeader.astro";
+import TextSection from "./TextSection.astro";
+
+import {
+  serviceImage,
+  service1Image,
+  service2Image,
+  service3Image,
+} from "../assets/images";
+import Card from "./Card.astro";
+
 interface Props {
   heading?: string;
+  subheading?: string;
+  textSectionHeading?: string;
+  textSectionContent?: string;
   text?: string;
 }
 
 const {
   heading = "Our Services",
-  text = "We offer comprehensive web development, cloud infrastructure setup, and digital transformation consulting."
+  subheading = "En drivande kraft genom hela investeringsprojektets alla faser",
+  textSectionHeading = "Vi brinner vi för att göra skillnad ",
+  textSectionContent = "Behöver du hjälp att definiera, motivera och genomföra dina planerade investeringar? Vi tillför det engagemang, den erfarenhet och det ledarskap som krävs för att förverkliga dina idéer. Vi är proffs på projektledning och driver dina projekt från de första tankarna till en fullt fungerande anläggning.",
 } = Astro.props;
 ---
 
-<section id="services" class="py-16 px-4 bg-gray-50">
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold mb-6 text-center" data-editable="services_heading">{heading}</h2>
-    <p class="text-lg text-gray-700 leading-relaxed" data-editable="services_text">{text}</p>
-  </div>
+<section id="services" class="min-h-screen bg-white">
+  <PageHeader
+    imageSrc={serviceImage}
+    altText=""
+    headingText={heading}
+    subHeadingText={subheading}
+  />
+  <TextSection
+    textSectionHeading={textSectionHeading}
+    pageName="Konsulterande"
+    textSectionContent={textSectionContent}
+  />
+  <CardSection grayBackground={true}>
+    <Card
+      imageSrc={service1Image}
+      heading="Förstudier"
+      cardContent="I förstudierna klargör vi projektets omfattning, analyserar nuläget, strukturerar innehållet och kartlägger intressenter. Vi bedömer affärsnyttan, jämför olika lösningsalternativ, tydliggör krav och tar fram en första plan för genomförandet."
+    />
+    <Card
+      imageSrc={service2Image}
+      heading="Planering & Projektering"
+      cardContent="I förstudierna klargör vi projektets omfattning, analyserar nuläget, strukturerar innehållet och kartlägger intressenter. Vi bedömer affärsnyttan, jämför olika lösningsalternativ, tydliggör krav och tar fram en första plan för genomförandet."
+    />
+    <Card
+      imageSrc={service3Image}
+      heading="Genomförande"
+      cardContent="I förstudierna klargör vi projektets omfattning, analyserar nuläget, strukturerar innehållet och kartlägger intressenter. Vi bedömer affärsnyttan, jämför olika lösningsalternativ, tydliggör krav och tar fram en första plan för genomförandet."
+    />
+  </CardSection>
 </section>

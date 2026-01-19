@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  imageSrc?: any;
+  altText?: string;
+  headingText: string;
+  subHeadingText: string;
+  bgColor?: string;
+  blackText?: boolean;
+}
+
+const { imageSrc, altText, headingText, subHeadingText, bgColor, blackText } =
+  Astro.props;
+---
+
+<div
+  class="image-text-block relative h-[60dvh]"
+  style={bgColor ? `background-color: ${bgColor}` : undefined}
+>
+  {
+    // Only display image if imageSrc is provided
+    // If not provided, still render the div for layout purposes
+  }
+
+  {
+    imageSrc && (
+      <Image
+        class="h-full w-full object-cover"
+        src={imageSrc}
+        alt={altText || ""}
+        width={0}
+        height={0}
+      />
+    )
+  }
+
+  <div class="absolute bottom-0 lg:ml-[170px] mx-4">
+    <h1>{headingText}</h1>
+    <h1 class={blackText ? "text-black" : "text-white"}>{subHeadingText}</h1>
+  </div>
+</div>

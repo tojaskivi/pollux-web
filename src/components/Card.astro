@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  heading?: string;
+  cardContent?: string;
+  imageSrc?: ImageMetadata | string;
+  altText?: string;
+}
+
+const {
+  heading = "XXXXX",
+  cardContent = "Behöver du hjälp att definiera, motivera och genomföra dina planerade investeringar?Vi tillför det engagemang, den erfarenhet och det ledarskap som krävs för att förverkliga dina idéer. Vi är proffs på projektledning och driver dina projekt från de första tankarna till en fullt fungerande anläggning.",
+  imageSrc = "https://placehold.co/1920x1080?text=Hello+World",
+  altText = "Hello World",
+} = Astro.props;
+---
+
+<article class="md:flex-[1_1_400px]">
+  <Image
+    src={imageSrc}
+    alt={altText}
+    width={1920}
+    height={1080}
+    class="object-cover h-78 w-full"
+  />
+  <h3 class="mt-4">{heading}</h3>
+  <p class="text-base">
+    {cardContent}
+  </p>
+</article>

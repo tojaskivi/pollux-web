@@ -1,12 +1,16 @@
 {
-  "hero_title": "Hello world",
+  "hero_title": "Resultat börjar med människor",
   "hero_subtitle": "We make stuff work",
   "hero_description": "This is a different text",
   "about_heading": "About Us",
   "about_text": "We are a company dedicated to creating innovative solutions that help businesses thrive in the digital age. Our team of experts brings years of experience and passion to every project.",
-  "services_heading": "Our Services",
+  "services_heading": "Projektledning",
+  "services_subheading": "En drivande kraft genom hela investeringsprojektets alla faser",
   "services_text": "We offer comprehensive web development, cloud infrastructure setup, and digital transformation consulting. Our goal is to deliver solutions that are scalable, maintainable, and perfectly aligned with your business objectives.",
-  "contact_heading": "Get In Touch",
-  "contact_email": "hello@example.com",
-  "contact_phone": "+1 (555) 123-4567"
+  "contact_heading": "Kontakt",
+  "contact_subheading": "För mer information om hur vi kan hjälpa ert projekt.",
+  "contact_email": "info@pollux.se",
+  "contact_phone": "+46 (0)70 5327165",
+  "clients_heading": "Våra kunder",
+  "clients_subheading": "Some of the"
 }
