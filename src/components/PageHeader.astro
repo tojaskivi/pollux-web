@@ -8,14 +8,24 @@ interface Props {
   subHeadingText: string;
   bgColor?: string;
   blackText?: boolean;
+  headingEditableKey?: string;
+  subHeadingEditableKey?: string;
 }
 
-const { imageSrc, altText, headingText, subHeadingText, bgColor, blackText } =
-  Astro.props;
+const {
+  imageSrc,
+  altText,
+  headingText,
+  subHeadingText,
+  bgColor,
+  blackText,
+  headingEditableKey,
+  subHeadingEditableKey,
+} = Astro.props;
 ---
 
 <div
-  class="image-text-block relative h-[60dvh]"
+  class="image-text-block relative h-[70dvh]"
   style={bgColor ? `background-color: ${bgColor}` : undefined}
 >
   {
@@ -36,7 +46,12 @@ const { imageSrc, altText, headingText, subHeadingText, bgColor, blackText } =
   }
 
   <div class="absolute bottom-0 lg:ml-[170px] px-4 mx-4">
-    <h1>{headingText}</h1>
-    <h1 class={blackText ? "text-black" : "text-white"}>{subHeadingText}</h1>
+    <h1 data-editable={headingEditableKey}>{headingText}</h1>
+    <h1
+      class={blackText ? "text-black" : "text-white"}
+      data-editable={subHeadingEditableKey}
+    >
+      {subHeadingText}
+    </h1>
   </div>
 </div>

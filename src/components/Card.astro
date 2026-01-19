@@ -6,6 +6,8 @@ interface Props {
   cardContent?: string;
   imageSrc: ImageMetadata;
   altText?: string;
+  headingEditableKey?: string;
+  contentEditableKey?: string;
 }
 
 const {
@@ -13,10 +15,12 @@ const {
   cardContent = "Behöver du hjälp att definiera, motivera och genomföra dina planerade investeringar?Vi tillför det engagemang, den erfarenhet och det ledarskap som krävs för att förverkliga dina idéer. Vi är proffs på projektledning och driver dina projekt från de första tankarna till en fullt fungerande anläggning.",
   imageSrc,
   altText = "Hello World",
+  headingEditableKey,
+  contentEditableKey,
 } = Astro.props;
 ---
 
-<article class="md:flex-[1_1_400px]">
+<article class="md:flex-[1_1_300px]">
   <Image
     src={imageSrc}
     alt={altText}
@@ -24,8 +28,8 @@ const {
     height={1080}
     class="object-cover h-78 w-full"
   />
-  <h3 class="mt-4">{heading}</h3>
-  <p class="">
+  <h3 class="mt-4" data-editable={headingEditableKey}>{heading}</h3>
+  <p class="" data-editable={contentEditableKey}>
     {cardContent}
   </p>
 </article>

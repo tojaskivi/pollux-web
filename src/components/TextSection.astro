@@ -4,8 +4,10 @@ interface Props {
   textSectionContent: string;
   grayBackground?: boolean;
   pageName: string;
+  headingEditableKey?: string;
+  contentEditableKey?: string;
 }
-const { textSectionHeading, textSectionContent, grayBackground, pageName } =
+const { textSectionHeading, textSectionContent, grayBackground, pageName, headingEditableKey, contentEditableKey } =
   Astro.props;
 ---
 
@@ -18,8 +20,8 @@ const { textSectionHeading, textSectionContent, grayBackground, pageName } =
   <p class="text-sm">Pollux</p>
   <p class="text-sm">{pageName}</p>
   <div class="sm:col-start-2 col-span-2 mt-4">
-    {textSectionHeading && <h2>{textSectionHeading}</h2>}
-    <p class="text-2xl">{textSectionContent}</p>
+    {textSectionHeading && <h2 data-editable={headingEditableKey}>{textSectionHeading}</h2>}
+    <p class="text-2xl" data-editable={contentEditableKey}>{textSectionContent}</p>
     <slot />
   </div>
 </div>

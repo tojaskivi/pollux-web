@@ -7,8 +7,13 @@
   --brand-color: #ed6751;
   --bg-gray: #f4f4f4;
   --bg-dark-gray: #cecece;
-  --font-heading: "neue-haas-grotesk-display", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", system-ui, sans-serif;
+  --font-heading:
+    "neue-haas-grotesk-display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @layer base {
@@ -25,7 +30,7 @@
   }
 
   h1 {
-    @apply text-[32px] md:text-[48px] lg:text-[64px] xl:text-[96px] leading-[1.02] font-normal mb-4;
+    @apply text-[32px] md:text-[48px] lg:text-[64px] xl:text-[82px] leading-[1.02] font-normal mb-4;
     color: var(--brand-color);
     font-family: var(--font-heading);
     word-wrap: break-word;
@@ -48,8 +53,13 @@
 
   p {
     color: #000;
-    font-family: "Neue Haas Grotesk Text Pro", -apple-system, BlinkMacSystemFont,
-      "Segoe UI", system-ui, sans-serif;
+    font-family:
+      "Neue Haas Grotesk Text Pro",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      system-ui,
+      sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

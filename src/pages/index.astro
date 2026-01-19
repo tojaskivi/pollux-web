@@ -19,9 +19,22 @@ import Header from "../components/Header.astro";
   />
   <Services
     heading={siteContent.services_heading}
-    text={siteContent.services_text}
+    subheading={siteContent.services_subheading}
+    introHeading={siteContent.services_intro_heading}
+    introText={siteContent.services_intro_text}
+    card1Heading={siteContent.services_card1_heading}
+    card1Text={siteContent.services_card1_text}
+    card2Heading={siteContent.services_card2_heading}
+    card2Text={siteContent.services_card2_text}
+    card3Heading={siteContent.services_card3_heading}
+    card3Text={siteContent.services_card3_text}
   />
-  <About heading={siteContent.about_heading} />
+  <About
+    heading={siteContent.about_heading}
+    subheading={siteContent.about_subheading}
+    textSectionHeading={siteContent.about_intro_heading}
+    textSectionContent={siteContent.about_intro_text}
+  />
   <Clients heading={siteContent.clients_heading} />
   <Contact heading={siteContent.contact_heading} />
   <Footer />

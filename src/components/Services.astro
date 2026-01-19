@@ -14,16 +14,27 @@ import Card from "./Card.astro";
 interface Props {
   heading?: string;
   subheading?: string;
-  textSectionHeading?: string;
-  textSectionContent?: string;
-  text?: string;
+  introHeading?: string;
+  introText?: string;
+  card1Heading?: string;
+  card1Text?: string;
+  card2Heading?: string;
+  card2Text?: string;
+  card3Heading?: string;
+  card3Text?: string;
 }
 
 const {
   heading = "Our Services",
   subheading = "En drivande kraft genom hela investeringsprojektets alla faser",
-  textSectionHeading = "Vi brinner vi för att göra skillnad ",
-  textSectionContent = "Behöver du hjälp att definiera, motivera och genomföra dina planerade investeringar? Vi tillför det engagemang, den erfarenhet och det ledarskap som krävs för att förverkliga dina idéer. Vi är proffs på projektledning och driver dina projekt från de första tankarna till en fullt fungerande anläggning.",
+  introHeading = "Vi brinner vi för att göra skillnad",
+  introText = "Behöver du hjälp att definiera, motivera och genomföra dina planerade investeringar? Vi tillför det engagemang, den erfarenhet och det ledarskap som krävs för att förverkliga dina idéer. Vi är proffs på projektledning och driver dina projekt från de första tankarna till en fullt fungerande anläggning.",
+  card1Heading = "Förstudier",
+  card1Text = "I förstudierna klargör vi projektets omfattning, analyserar nuläget, strukturerar innehållet och kartlägger intressenter. Vi bedömer affärsnyttan, jämför olika lösningsalternativ, tydliggör krav och tar fram en första plan för genomförandet.",
+  card2Heading = "Planering & Projektering",
+  card2Text = "I förstudierna klargör vi projektets omfattning, analyserar nuläget, strukturerar innehållet och kartlägger intressenter. Vi bedömer affärsnyttan, jämför olika lösningsalternativ, tydliggör krav och tar fram en första plan för genomförandet.",
+  card3Heading = "Genomförande",
+  card3Text = "I förstudierna klargör vi projektets omfattning, analyserar nuläget, strukturerar innehållet och kartlägger intressenter. Vi bedömer affärsnyttan, jämför olika lösningsalternativ, tydliggör krav och tar fram en första plan för genomförandet.",
 } = Astro.props;
 ---
 
@@ -33,27 +44,37 @@ const {
     altText=""
     headingText={heading}
     subHeadingText={subheading}
+    headingEditableKey="services_heading"
+    subHeadingEditableKey="services_subheading"
   />
   <TextSection
-    textSectionHeading={textSectionHeading}
+    textSectionHeading={introHeading}
     pageName="Konsulterande"
-    textSectionContent={textSectionContent}
+    textSectionContent={introText}
+    headingEditableKey="services_intro_heading"
+    contentEditableKey="services_intro_text"
   />
   <CardSection grayBackground={true}>
     <Card
       imageSrc={service1Image}
-      heading="Förstudier"
-      cardContent="I förstudierna klargör vi projektets omfattning, analyserar nuläget, strukturerar innehållet och kartlägger intressenter. Vi bedömer affärsnyttan, jämför olika lösningsalternativ, tydliggör krav och tar fram en första plan för genomförandet."
+      heading={card1Heading}
+      cardContent={card1Text}
+      headingEditableKey="services_card1_heading"
+      contentEditableKey="services_card1_text"
     />
     <Card
       imageSrc={service2Image}
-      heading="Planering & Projektering"
-      cardContent="I förstudierna klargör vi projektets omfattning, analyserar nuläget, strukturerar innehållet och kartlägger intressenter. Vi bedömer affärsnyttan, jämför olika lösningsalternativ, tydliggör krav och tar fram en första plan för genomförandet."
+      heading={card2Heading}
+      cardContent={card2Text}
+      headingEditableKey="services_card2_heading"
+      contentEditableKey="services_card2_text"
     />
     <Card
       imageSrc={service3Image}
-      heading="Genomförande"
-      cardContent="I förstudierna klargör vi projektets omfattning, analyserar nuläget, strukturerar innehållet och kartlägger intressenter. Vi bedömer affärsnyttan, jämför olika lösningsalternativ, tydliggör krav och tar fram en första plan för genomförandet."
+      heading={card3Heading}
+      cardContent={card3Text}
+      headingEditableKey="services_card3_heading"
+      contentEditableKey="services_card3_text"
     />
   </CardSection>
 </section>
