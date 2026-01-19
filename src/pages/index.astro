@@ -13,30 +13,47 @@ import Header from "../components/Header.astro";
 <Layout>
   <Header />
   <Hero
-    title={siteContent.hero_title}
-    subtitle={siteContent.hero_subtitle}
-    description={siteContent.hero_description}
+    title={siteContent.hero.title}
+    subtitle={siteContent.hero.subtitle}
+    description={siteContent.hero.description}
   />
   <Services
-    heading={siteContent.services_heading}
-    subheading={siteContent.services_subheading}
-    introHeading={siteContent.services_intro_heading}
-    introText={siteContent.services_intro_text}
-    card1Heading={siteContent.services_card1_heading}
-    card1Text={siteContent.services_card1_text}
-    card2Heading={siteContent.services_card2_heading}
-    card2Text={siteContent.services_card2_text}
-    card3Heading={siteContent.services_card3_heading}
-    card3Text={siteContent.services_card3_text}
+    heading={siteContent.services.heading}
+    subheading={siteContent.services.subheading}
+    introHeading={siteContent.services.intro_heading}
+    introText={siteContent.services.intro_text}
+    card1Heading={siteContent.services.card1_heading}
+    card1Text={siteContent.services.card1_text}
+    card2Heading={siteContent.services.card2_heading}
+    card2Text={siteContent.services.card2_text}
+    card3Heading={siteContent.services.card3_heading}
+    card3Text={siteContent.services.card3_text}
   />
   <About
-    heading={siteContent.about_heading}
-    subheading={siteContent.about_subheading}
-    textSectionHeading={siteContent.about_intro_heading}
-    textSectionContent={siteContent.about_intro_text}
+    heading={siteContent.about.heading}
+    subheading={siteContent.about.subheading}
+    textSectionHeading={siteContent.about.intro_heading}
+    textSectionContent={siteContent.about.intro_text}
   />
-  <Clients heading={siteContent.clients_heading} />
-  <Contact heading={siteContent.contact_heading} />
+  <Clients
+    heading={siteContent.clients.heading}
+    subheading={siteContent.clients.subheading}
+    introHeading={siteContent.clients.intro_heading}
+    introText={siteContent.clients.intro_text}
+    card1Heading={siteContent.clients.card1_heading}
+    card1Text={siteContent.clients.card1_text}
+    card2Heading={siteContent.clients.card2_heading}
+    card2Text={siteContent.clients.card2_text}
+    card3Heading={siteContent.clients.card3_heading}
+    card3Text={siteContent.clients.card3_text}
+  />
+  <Contact
+    heading={siteContent.contact.heading}
+    subheading={siteContent.contact.subheading}
+    contactName={siteContent.contact.name}
+    contactEmail={siteContent.contact.email}
+    contactPhone={siteContent.contact.phone}
+  />
   <Footer />
 </Layout>
 

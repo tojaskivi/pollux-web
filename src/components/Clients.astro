@@ -12,15 +12,27 @@ import {
 interface Props {
   heading?: string;
   subheading?: string;
-  textSectionHeading?: string;
-  textSectionContent?: string;
+  introHeading?: string;
+  introText?: string;
+  card1Heading?: string;
+  card1Text?: string;
+  card2Heading?: string;
+  card2Text?: string;
+  card3Heading?: string;
+  card3Text?: string;
 }
 
 const {
   heading = "Kunder",
   subheading = "Vi har en lång erfarenhet att jobba med etablerade kunder",
-  textSectionHeading = "Våra erfarenheter ger bästa kundupplevelsen",
-  textSectionContent = "Våra kunder finns i flera olika branscher, men delar samma mål: att skapa lyckade projekt med långsiktig nytta. Genom vårt engagemang och vår expertis har vi hjälpt dem att förverkliga sina visioner – från idé till verklighet.",
+  introHeading = "Våra erfarenheter ger bästa kundupplevelsen",
+  introText = "Våra kunder finns i flera olika branscher, men delar samma mål: att skapa lyckade projekt med långsiktig nytta. Genom vårt engagemang och vår expertis har vi hjälpt dem att förverkliga sina visioner – från idé till verklighet.",
+  card1Heading = "Stockholm Exergi",
+  card1Text = "Stockholm Exergi förser stora delar av Stockholmsregionen med energi: fjärrvärme, ibland el & kyla, samt tar hand om avfall och restvärme. Pollux har agerat som huvudprojektledare för åtskilliga investeringsprojekt, från idé till färdig anläggning.",
+  card2Heading = "Stockholms Hamnar",
+  card2Text = "Stockholms Hamnar sköter och utvecklar Stockholms hamnar och kajer för färje-, kryssnings- och containertrafik samt skärgårdstrafik. Pollux har ansvarat för framtagandet av en förstudie med målsättning att hitta en ny verksamhets-utövare i en del av Norra Värtahamnen.",
+  card3Heading = "Zander & Ingeström",
+  card3Text = "Zander & Ingeström är ett ledande företag inom pump- och värmeteknik som erbjuder produkter och lösningar inom energi- och flödesteknik. Pollux har ansvarat för att hitta nya leverantörer på kritiska komponenter, samt bistått med att utveckla en modulär produktplattform för deras industriella elpannor.",
 } = Astro.props;
 ---
 
@@ -30,11 +42,15 @@ const {
     headingText={heading}
     subHeadingText={subheading}
     bgColor="#1D1D1B"
+    headingEditableKey="clients_heading"
+    subHeadingEditableKey="clients_subheading"
   />
   <TextSection
-    textSectionHeading={textSectionHeading}
+    textSectionHeading={introHeading}
     pageName="Kunder"
-    textSectionContent={textSectionContent}
+    textSectionContent={introText}
+    headingEditableKey="clients_intro_heading"
+    contentEditableKey="clients_intro_text"
   />
 
   <div
@@ -48,12 +64,9 @@ const {
         width={600}
         height={0}
       />
-      <h3 class="mt-4">Stockholm Exergi</h3>
-      <p>
-        Stockholm Exergi förser stora delar av Stockholmsregionen med energi:
-        fjärrvärme, ibland el & kyla, samt tar hand om avfall och restvärme.
-        Pollux har agerat som huvudprojektledare för åtskilliga
-        investeringsprojekt, från idé till färdig anläggning.
+      <h3 class="mt-4" data-editable="clients_card1_heading">{card1Heading}</h3>
+      <p data-editable="clients_card1_text">
+        {card1Text}
       </p>
     </article>
     <article>
@@ -64,12 +77,9 @@ const {
         width={600}
         height={0}
       />
-      <h3 class="mt-4">Stockholms Hamnar</h3>
-      <p>
-        Stockholms Hamnar sköter och utvecklar Stockholms hamnar och kajer för
-        färje-, kryssnings- och containertrafik samt skärgårdstrafik. Pollux har
-        ansvarat för framtagandet av en förstudie med målsättning att hitta en
-        ny verksamhets-utövare i en del av Norra Värtahamnen.
+      <h3 class="mt-4" data-editable="clients_card2_heading">{card2Heading}</h3>
+      <p data-editable="clients_card2_text">
+        {card2Text}
       </p>
     </article>
     <article>
@@ -80,13 +90,9 @@ const {
         width={600}
         height={0}
       />
-      <h3 class="mt-4">Zander & Ingeström</h3>
-      <p>
-        Zander & Ingeström är ett ledande företag inom pump- och värmeteknik som
-        erbjuder produkter och lösningar inom energi- och flödesteknik. Pollux
-        har ansvarat för att hitta nya leverantörer på kritiska komponenter,
-        samt bistått med att utveckla en modulär produktplattform för deras
-        industriella elpannor.
+      <h3 class="mt-4" data-editable="clients_card3_heading">{card3Heading}</h3>
+      <p data-editable="clients_card3_text">
+        {card3Text}
       </p>
     </article>
   </div>

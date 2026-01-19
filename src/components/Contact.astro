@@ -7,17 +7,17 @@ import { heroImage } from "../assets/images";
 interface Props {
   heading?: string;
   subheading?: string;
-  textSectionHeading?: string;
-  textSectionContent?: string;
-  text?: string;
+  contactName?: string;
+  contactEmail?: string;
+  contactPhone?: string;
 }
 
 const {
   heading = "Kontakt",
   subheading = "För mer information om hur vi kan hjälpa ert projekt.",
-  textSectionHeading = "Info@pollux.se\n+46 (0)70 5327165",
-
-  text = "We offer comprehensive web development, cloud infrastructure setup, and digital transformation consulting.",
+  contactName = "Olle Bjurström (CEO)",
+  contactEmail = "olle@pollux.se",
+  contactPhone = "+46 (0)70 532 71 65",
 } = Astro.props;
 ---
 
@@ -28,10 +28,12 @@ const {
     subHeadingText={subheading}
     bgColor="#f4f4f4"
     blackText={true}
+    headingEditableKey="contact_heading"
+    subHeadingEditableKey="contact_subheading"
   />
   <TextSection textSectionContent={""} grayBackground={true} pageName="Kontakt">
-    <p class="text-4xl">Olle Bjurström (CEO)</p>
-    <p class="text-4xl">olle@pollux.se</p>
-    <p class="text-4xl">+46 (0)70 532 71 65</p>
+    <p class="text-4xl" data-editable="contact_name">{contactName}</p>
+    <p class="text-4xl" data-editable="contact_email">{contactEmail}</p>
+    <p class="text-4xl" data-editable="contact_phone">{contactPhone}</p>
   </TextSection>
 </section>

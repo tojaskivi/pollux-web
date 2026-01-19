@@ -5,6 +5,26 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUTPUT_PATH = `${__dirname}/../src/content/site.json`;
 
+// Transform flat keys to nested structure
+// E.g. "hero_title" -> {hero: {title: "..."}}
+function transformToNested(flatContent) {
+  const nested = {};
+
+  for (const [key, value] of Object.entries(flatContent)) {
+    const parts = key.split('_');
+    const section = parts[0]; // hero, about, services, etc.
+    const property = parts.slice(1).join('_'); // title, subtitle, intro_heading, etc.
+
+    if (!nested[section]) {
+      nested[section] = {};
+    }
+
+    nested[section][property] = value;
+  }
+
+  return nested;
+}
+
 // Detect environment
 const isProduction = process.env.CF_PAGES === '1';
 
@@ -45,11 +65,14 @@ try {
     }, {}) || {};
   }
 
+  // Transform flat content to nested structure
+  const nestedContent = transformToNested(content);
+
   // Ensure directory exists
   await mkdir(dirname(OUTPUT_PATH), { recursive: true });
 
   // Write to site.json
-  await writeFile(OUTPUT_PATH, JSON.stringify(content, null, 2));
+  await writeFile(OUTPUT_PATH, JSON.stringify(nestedContent, null, 2));
 
   console.log(`✅ Content fetched successfully: ${Object.keys(content).length} items`);
   console.log(`📄 Written to: ${OUTPUT_PATH}`);
