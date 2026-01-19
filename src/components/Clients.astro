@@ -51,49 +51,55 @@ const {
     textSectionContent={introText}
     headingEditableKey="clients_intro_heading"
     contentEditableKey="clients_intro_text"
-  />
-
-  <div
-    class="flex gap-8 flex-col lg:flex-row md:ml-[170px] justify-center md:justify-start px-4 md:pl-0 pb-16"
   >
-    <article>
-      <Image
-        class="h-24 w-auto object-contain"
-        src={stockholmExergi}
-        alt=""
-        width={600}
-        height={0}
-      />
-      <h3 class="mt-4" data-editable="clients_card1_heading">{card1Heading}</h3>
-      <p data-editable="clients_card1_text">
-        {card1Text}
-      </p>
-    </article>
-    <article>
-      <Image
-        class="h-24 w-auto object-contain"
-        src={stockholmsHamnar}
-        alt=""
-        width={600}
-        height={0}
-      />
-      <h3 class="mt-4" data-editable="clients_card2_heading">{card2Heading}</h3>
-      <p data-editable="clients_card2_text">
-        {card2Text}
-      </p>
-    </article>
-    <article>
-      <Image
-        class="h-24 w-auto object-contain"
-        src={zanderIngestrom}
-        alt=""
-        width={600}
-        height={0}
-      />
-      <h3 class="mt-4" data-editable="clients_card3_heading">{card3Heading}</h3>
-      <p data-editable="clients_card3_text">
-        {card3Text}
-      </p>
-    </article>
-  </div>
+    <div
+      class="flex gap-8 flex-col lg:flex-row justify-center md:justify-start py-16"
+    >
+      <article>
+        <Image
+          class="h-24 w-auto object-contain"
+          src={stockholmExergi}
+          alt=""
+          width={600}
+          height={0}
+        />
+        <h3 class="mt-4" data-editable="clients_card1_heading">
+          {card1Heading}
+        </h3>
+        <p data-editable="clients_card1_text">
+          {card1Text}
+        </p>
+      </article>
+      <article>
+        <Image
+          class="h-24 w-auto object-contain"
+          src={stockholmsHamnar}
+          alt=""
+          width={600}
+          height={0}
+        />
+        <h3 class="mt-4" data-editable="clients_card2_heading">
+          {card2Heading}
+        </h3>
+        <p data-editable="clients_card2_text">
+          {card2Text}
+        </p>
+      </article>
+      <article>
+        <Image
+          class="h-24 w-auto object-contain"
+          src={zanderIngestrom}
+          alt=""
+          width={600}
+          height={0}
+        />
+        <h3 class="mt-4" data-editable="clients_card3_heading">
+          {card3Heading}
+        </h3>
+        <p data-editable="clients_card3_text">
+          {card3Text}
+        </p>
+      </article>
+    </div>
+  </TextSection>
 </section>

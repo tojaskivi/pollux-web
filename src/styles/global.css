@@ -30,7 +30,7 @@ html {
   }
 
   h1 {
-    @apply text-[32px] md:text-[48px] lg:text-[64px] xl:text-[82px] leading-[1.02] font-normal mb-4;
+    @apply text-[32px] md:text-[48px] lg:text-[72px] xl:text-[82px] leading-[1.02] font-normal mb-4;
     color: var(--brand-color);
     font-family: var(--font-heading);
     word-wrap: break-word;
