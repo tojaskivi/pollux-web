@@ -4,14 +4,14 @@ import { Image } from "astro:assets";
 interface Props {
   heading?: string;
   cardContent?: string;
-  imageSrc?: ImageMetadata | string;
+  imageSrc: ImageMetadata;
   altText?: string;
 }
 
 const {
   heading = "XXXXX",
   cardContent = "Behöver du hjälp att definiera, motivera och genomföra dina planerade investeringar?Vi tillför det engagemang, den erfarenhet och det ledarskap som krävs för att förverkliga dina idéer. Vi är proffs på projektledning och driver dina projekt från de första tankarna till en fullt fungerande anläggning.",
-  imageSrc = "https://placehold.co/1920x1080?text=Hello+World",
+  imageSrc,
   altText = "Hello World",
 } = Astro.props;
 ---

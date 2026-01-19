@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import { logo } from "../assets/icons";
+import { logo, menuIcon, closeIcon } from "../assets/icons";
+import { heroImage } from "../assets/images";
 
 interface Props {
   heading?: string;
@@ -8,8 +9,9 @@ interface Props {
 }
 ---
 
-<header class="fixed top-0 flex justify-between z-10 w-full p-4 max-w-[1920px]">
-  <nav class="grid grid-cols-3 gap-x-8 gap-y-4 items-center">
+<header id="main-header" class="fixed top-0 flex justify-between z-10 w-full p-4 max-w-[1920px] transition-transform duration-300 ease-in-out">
+  <!-- Desktop Navigation -->
+  <nav class="hidden md:grid grid-cols-3 gap-x-8 gap-y-4 items-center">
     <a href="#" class="text-white mix-blend-difference">Pollux</a>
     <a href="#services" class="text-white mix-blend-difference">Konsulterande</a
     >
@@ -20,5 +22,110 @@ interface Props {
     <a href="#contact" class="text-white mix-blend-difference">Kontakt</a>
   </nav>
 
+  <!-- Mobile Menu Button -->
+  <button
+    id="mobile-menu-button"
+    class="md:hidden text-white mix-blend-difference z-50"
+    aria-label="Toggle menu"
+  >
+    <Image src={menuIcon} alt="Menu" width={24} height={24} />
+  </button>
+
   <Image src={logo} alt="Pollux Logo" width={0} height={54} />
 </header>
+
+<!-- Mobile Menu Overlay -->
+<div
+  id="mobile-menu"
+  class="fixed top-0 left-0 right-0 bg-white z-40 transform -translate-y-full transition-transform duration-200 ease-out md:hidden"
+>
+  <!-- Header with close button and logo -->
+  <div class="flex justify-between items-center p-4">
+    <button id="mobile-menu-close" class="text-black" aria-label="Close menu">
+      <Image src={closeIcon} alt="Close" width={32} height={32} />
+    </button>
+    <Image src={logo} alt="Pollux Logo" width={0} height={54} class="invert" />
+  </div>
+
+  <!-- Navigation -->
+  <nav class="flex flex-col px-4 pb-8 pt-20 space-y-2">
+    <a href="#" class="mobile-menu-link">Pollux</a>
+    <a href="#services" class="mobile-menu-link">Konsulterande</a>
+    <a href="#about" class="mobile-menu-link">Om Pollux</a>
+    <a href="#clients" class="mobile-menu-link">Kunder</a>
+    <a href="#contact" class="mobile-menu-link">Kontakt</a>
+  </nav>
+</div>
+
+<style>
+  .mobile-menu-link {
+    color: #000;
+    font-family: "Neue Haas Grotesk Text Pro", sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+  }
+</style>
+
+<script>
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileMenuClose = document.getElementById("mobile-menu-close");
+  const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
+
+  function openMenu() {
+    mobileMenu?.classList.remove("-translate-y-full");
+  }
+
+  function closeMenu() {
+    mobileMenu?.classList.add("-translate-y-full");
+  }
+
+  mobileMenuButton?.addEventListener("click", openMenu);
+  mobileMenuClose?.addEventListener("click", closeMenu);
+
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Header hide/show on scroll
+  let lastScrollY = window.scrollY;
+  let scrollAccumulator = 0;
+  let ticking = false;
+
+  function updateHeader() {
+    const currentScrollY = window.scrollY;
+    const header = document.getElementById("main-header");
+
+    if (!header) return;
+
+    const scrollDelta = currentScrollY - lastScrollY;
+
+    if (scrollDelta > 0) {
+      // Scrolling down - accumulate distance
+      scrollAccumulator += scrollDelta;
+
+      if (scrollAccumulator >= 100) {
+        // Hide header after 100px of downward scroll
+        header.style.transform = "translateY(-100%)";
+      }
+    } else if (scrollDelta < 0) {
+      // Scrolling up - show header immediately and reset
+      header.style.transform = "translateY(0)";
+      scrollAccumulator = 0;
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>

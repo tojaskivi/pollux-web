@@ -8,7 +8,9 @@ interface Props {
   description?: string;
 }
 
-const { title = "Resultat börjar med människor" } = Astro.props;
+const {
+  title = "En drivande kraft genom hela investeringsprojektets alla faser. Resultat börjar med människor",
+} = Astro.props;
 ---
 
 <section id="hero" class="min-h-screen relative">
@@ -19,14 +21,16 @@ const { title = "Resultat börjar med människor" } = Astro.props;
     height={1080}
     class="absolute inset-0 w-full h-full object-cover -z-1"
   />
-  <div class="flex items-center gap-4 ml-[96px] min-h-screen pt-[30vh]">
-    <Image
-      src={logomark}
-      alt="Pollux Logomark"
-      width={0}
-      height={0}
-      class="w-24 h-auto"
-    />
-    <h1 class="text-white" data-editable="hero_title">{title}</h1>
+  <div class="flex items-center gap-4 ml-4 sm:ml-8 md:ml-12 lg:ml-[80px] mr-4 sm:mr-8 min-h-screen pt-[30vh]">
+    <div class="flex gap-4 flex-col md:flex-row max-w-full">
+      <Image
+        src={logomark}
+        alt="Pollux Logomark"
+        width={0}
+        height={0}
+        class="w-24 h-auto self-start flex-shrink-0"
+      />
+      <h1 class="text-white max-w-full" data-editable="hero_title">{title}</h1>
+    </div>
   </div>
 </section>

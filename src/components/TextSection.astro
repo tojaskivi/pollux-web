@@ -11,13 +11,13 @@ const { textSectionHeading, textSectionContent, grayBackground, pageName } =
 
 <div
   class:list={[
-    "grid md:grid-cols-[170px_1fr] md:gap-x-0 gap-x-4 grid-cols-[auto_1fr] gap-4 py-4 pb-16 px-4",
+    "grid sm:grid-cols-[170px_1fr] md:gap-x-0 gap-x-4 grid-cols-[auto_1fr] gap-4 py-4 pb-16 px-4",
     { "bg-custom-gray": grayBackground },
   ]}
 >
   <p class="text-sm">Pollux</p>
   <p class="text-sm">{pageName}</p>
-  <div class="md:col-start-2 col-span-2 mt-4">
+  <div class="sm:col-start-2 col-span-2 mt-4">
     {textSectionHeading && <h2>{textSectionHeading}</h2>}
     <p class="text-2xl">{textSectionContent}</p>
     <slot />
