@@ -8,6 +8,7 @@ import {
   stockholmsHamnar,
   zanderIngestrom,
 } from "../assets/clients";
+import ClientCard from "./ClientCard.astro";
 
 interface Props {
   heading?: string;
@@ -55,51 +56,27 @@ const {
     <div
       class="flex gap-8 flex-col lg:flex-row justify-center md:justify-start py-16"
     >
-      <article>
-        <Image
-          class="h-24 w-auto object-contain"
-          src={stockholmExergi}
-          alt=""
-          width={600}
-          height={0}
-        />
-        <h3 class="mt-4" data-editable="clients_card1_heading">
-          {card1Heading}
-        </h3>
-        <p data-editable="clients_card1_text">
-          {card1Text}
-        </p>
-      </article>
-      <article>
-        <Image
-          class="h-24 w-auto object-contain"
-          src={stockholmsHamnar}
-          alt=""
-          width={600}
-          height={0}
-        />
-        <h3 class="mt-4" data-editable="clients_card2_heading">
-          {card2Heading}
-        </h3>
-        <p data-editable="clients_card2_text">
-          {card2Text}
-        </p>
-      </article>
-      <article>
-        <Image
-          class="h-24 w-auto object-contain"
-          src={zanderIngestrom}
-          alt=""
-          width={600}
-          height={0}
-        />
-        <h3 class="mt-4" data-editable="clients_card3_heading">
-          {card3Heading}
-        </h3>
-        <p data-editable="clients_card3_text">
-          {card3Text}
-        </p>
-      </article>
+      <ClientCard
+        heading={card1Heading}
+        cardContent={card1Text}
+        imageSrc={stockholmExergi}
+        headingEditableKey="clients_card1_heading"
+        contentEditableKey="clients_card1_text"
+      />
+      <ClientCard
+        heading={card2Heading}
+        cardContent={card2Text}
+        imageSrc={stockholmsHamnar}
+        headingEditableKey="clients_card2_heading"
+        contentEditableKey="clients_card2_text"
+      />
+      <ClientCard
+        heading={card3Heading}
+        cardContent={card3Text}
+        imageSrc={zanderIngestrom}
+        headingEditableKey="clients_card3_heading"
+        contentEditableKey="clients_card3_text"
+      />
     </div>
   </TextSection>
 </section>

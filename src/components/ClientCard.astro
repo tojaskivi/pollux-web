@@ -1,0 +1,31 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  heading?: string;
+  cardContent?: string;
+  imageSrc: ImageMetadata;
+  headingEditableKey?: string;
+  contentEditableKey?: string;
+}
+
+const {
+  heading,
+  cardContent,
+  imageSrc,
+  headingEditableKey,
+  contentEditableKey,
+} = Astro.props;
+---
+
+<article>
+  <Image
+    class="h-24 w-auto object-contain"
+    src={imageSrc}
+    alt=""
+    width={600}
+    height={0}
+  />
+  <h3 class="mt-4" data-editable={headingEditableKey} set:html={heading} />
+  <p class="" data-editable={contentEditableKey} set:html={cardContent} />
+</article>
