@@ -27,19 +27,33 @@ function transformToNested(flatContent) {
 
 // Detect environment
 const isProduction = process.env.CF_PAGES === '1';
+const branch = process.env.CF_PAGES_BRANCH || 'unknown';
 
-console.log(`🔄 Fetching content from D1 (${isProduction ? 'production' : 'local'})...`);
+console.log(`🔄 Fetching content from D1 (${isProduction ? `Cloudflare Pages - ${branch} branch` : 'local'})...`);
 
 try {
   let content = {};
 
   if (isProduction) {
-    // In Cloudflare Pages build: Fetch from production API endpoint
-    // Note: Can't use CF_PAGES_URL as it points to the preview deployment being built
-    const apiUrl = process.env.PRODUCTION_URL || 'https://dev-pollux-web.pages.dev';
+    // Determine API URL based on environment variable or branch
+    // API_BASE_URL should be set differently per environment in Cloudflare Pages:
+    // - Production environment: https://dev-pollux-web.pages.dev
+    // - Preview environment: https://staging.dev-pollux-web.pages.dev
+    let apiUrl = process.env.API_BASE_URL;
+
+    // Fallback: If API_BASE_URL not set, infer from branch
+    if (!apiUrl) {
+      if (branch === 'main') {
+        apiUrl = 'https://dev-pollux-web.pages.dev';
+      } else {
+        // For preview branches, use branch-based URL pattern
+        apiUrl = `https://${branch}--pollux-astro.pages.dev`;
+      }
+    }
+
     const contentUrl = `${apiUrl}/api/content`;
 
-    console.log(`📡 Fetching from API: ${contentUrl}`);
+    console.log(`📡 Fetching from API: ${contentUrl} (branch: ${branch})`);
 
     const response = await fetch(contentUrl);
 
