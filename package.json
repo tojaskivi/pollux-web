@@ -9,7 +9,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "d1:init": "wrangler d1 execute pollux-db --local --file=./scripts/init-d1.sql",
-    "d1:seed": "wrangler d1 execute pollux-db --remote --file=./scripts/init-d1.sql"
+    "d1:seed": "wrangler d1 execute pollux-db --remote --file=./scripts/init-d1.sql",
+    "d1:init:staging": "wrangler d1 execute pollux-db-staging --local --file=./scripts/init-d1.sql",
+    "d1:seed:staging": "wrangler d1 execute pollux-db-staging --remote --file=./scripts/init-d1.sql"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",

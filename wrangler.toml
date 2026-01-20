@@ -3,13 +3,32 @@
 name = "pollux-astro"
 compatibility_date = "2024-01-01"
 
-# D1 Database binding
+# D1 Database binding for local development
+# Production: pollux-db (main branch deployments)
+# Staging: pollux-db-staging (preview/PR deployments)
 [[d1_databases]]
 binding = "DB"
 database_name = "pollux-db"
 database_id = "2fe30a33-2741-4896-b255-0d02bef7dabf" # Production D1 database
 
-# Note: In Cloudflare Pages dashboard, you must:
-# 1. Go to Settings -> Functions -> D1 database bindings
-# 2. Add binding: "DB" -> select your "pollux-db" database
-# 3. The database_id above is only used for local dev with wrangler pages dev
+# For local staging/preview testing, uncomment the staging database:
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "pollux-db-staging"
+# database_id = "2e04830c-6dd1-43fc-a453-b048949c4419"
+
+# ====================================
+# Cloudflare Pages Configuration
+# ====================================
+# In the Cloudflare Pages dashboard, configure D1 bindings separately:
+#
+# Production Environment (Settings -> Functions -> D1 database bindings):
+#   Variable name: DB
+#   D1 database: pollux-db
+#
+# Preview Environment (Settings -> Functions -> D1 database bindings):
+#   Variable name: DB (same binding name!)
+#   D1 database: pollux-db-staging
+#
+# This allows the same code to use different databases per environment.
+# No code changes needed - Cloudflare Pages injects the correct DB automatically.
