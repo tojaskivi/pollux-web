@@ -37,13 +37,8 @@ const { email, phone } = Astro.props;
           >
         </div>
         <div class="hidden md:flex flex-col">
-          <a
-            href={`mailto:${email}`}
-            class="text-2xl md:text-base hover:underline">{email}</a
-          >
-          <a href={`tel:${phone}`} class="text-2xl md:text-base hover:underline"
-            >{phone}</a
-          >
+          <span class="text-2xl md:text-base">{email}</span>
+          <span class="text-2xl md:text-base">{phone}</span>
         </div>
       </div>
     </div>
