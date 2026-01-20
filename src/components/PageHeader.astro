@@ -46,11 +46,13 @@ const {
   }
 
   <div class="absolute bottom-0 lg:ml-[170px] px-4 mx-4">
-    <h1 data-editable={headingEditableKey} set:html={headingText} />
-    <h1
-      class={blackText ? "text-black" : "text-white"}
-      data-editable={subHeadingEditableKey}
-      set:html={subHeadingText}
-    />
+    <h1>
+      <span data-editable={headingEditableKey} set:html={headingText} />
+      <span
+        class:list={["block", blackText ? "text-black" : "text-white"]}
+        data-editable={subHeadingEditableKey}
+        set:html={subHeadingText}
+      />
+    </h1>
   </div>
 </div>
