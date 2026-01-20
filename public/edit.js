@@ -1,5 +1,5 @@
 // Inline editing functionality
-(function() {
+(function () {
   'use strict';
 
   // Check if edit mode is enabled via URL parameter
