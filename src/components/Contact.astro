@@ -32,8 +32,8 @@ const {
     subHeadingEditableKey="contact_subheading"
   />
   <TextSection textSectionContent={""} grayBackground={true} pageName="Kontakt">
-    <p class="text-4xl" data-editable="contact_name">{contactName}</p>
-    <p class="text-4xl" data-editable="contact_email">{contactEmail}</p>
-    <p class="text-4xl" data-editable="contact_phone">{contactPhone}</p>
+    <p class="text-4xl" data-editable="contact_name" set:html={contactName} />
+    <p class="text-4xl" data-editable="contact_email" set:html={contactEmail} />
+    <p class="text-4xl" data-editable="contact_phone" set:html={contactPhone} />
   </TextSection>
 </section>

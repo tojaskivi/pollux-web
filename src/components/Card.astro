@@ -28,8 +28,6 @@ const {
     height={1080}
     class="object-cover h-78 w-full"
   />
-  <h3 class="mt-4" data-editable={headingEditableKey}>{heading}</h3>
-  <p class="" data-editable={contentEditableKey}>
-    {cardContent}
-  </p>
+  <h3 class="mt-4" data-editable={headingEditableKey} set:html={heading} />
+  <p class="" data-editable={contentEditableKey} set:html={cardContent} />
 </article>

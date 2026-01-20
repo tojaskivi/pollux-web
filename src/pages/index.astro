@@ -54,7 +54,7 @@ import Header from "../components/Header.astro";
     contactEmail={siteContent.contact.email}
     contactPhone={siteContent.contact.phone}
   />
-  <Footer />
+  <Footer email={siteContent.contact.email} phone={siteContent.contact.phone} />
 </Layout>
 
 <script is:inline src="/edit.js"></script>

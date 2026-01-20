@@ -28,12 +28,14 @@ const {
   <div class="sm:col-start-2 col-span-2 mt-4">
     {
       textSectionHeading && (
-        <h2 data-editable={headingEditableKey}>{textSectionHeading}</h2>
+        <h2 data-editable={headingEditableKey} set:html={textSectionHeading} />
       )
     }
-    <p class="sm:text-2xl" data-editable={contentEditableKey}>
-      {textSectionContent}
-    </p>
+    <p
+      class="sm:text-2xl"
+      data-editable={contentEditableKey}
+      set:html={textSectionContent}
+    />
     <slot />
   </div>
 </div>

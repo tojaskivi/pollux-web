@@ -31,6 +31,29 @@
   // Initialize edit mode
   initEditMode();
 
+  function htmlToPlainText(element) {
+    // Get innerHTML and clean it up, preserving <br> tags
+    let html = element.innerHTML;
+
+    // Replace block-level elements (divs) with their content plus <br>
+    html = html.replace(/<div[^>]*>/gi, '');
+    html = html.replace(/<\/div>/gi, '<br>');
+
+    // Remove other HTML tags but keep <br>
+    html = html.replace(/<(?!br\s*\/?)[^>]+>/gi, '');
+
+    // Clean up excessive <br> tags (more than 2 consecutive)
+    html = html.replace(/(<br\s*\/?>){3,}/gi, '<br><br>');
+
+    // Decode HTML entities
+    const textarea = document.createElement('textarea');
+    textarea.innerHTML = html;
+    html = textarea.value;
+
+    // Trim and return
+    return html.trim();
+  }
+
   function initEditMode() {
     // Add edit mode indicator
     const indicator = document.createElement('div');
@@ -74,8 +97,8 @@
 
       editableElements.forEach(element => {
         const key = element.getAttribute('data-editable');
-        // Use textContent to strip HTML and get plain text
-        const value = element.textContent.trim();
+        // Convert HTML content to plain text with preserved newlines
+        const value = htmlToPlainText(element);
         updates[key] = value;
       });
 

@@ -2,9 +2,11 @@
 import { Image } from "astro:assets";
 import { logo } from "../assets/icons";
 interface Props {
-  heading?: string;
-  text?: string;
+  email?: string;
+  phone?: string;
 }
+
+const { email, phone } = Astro.props;
 ---
 
 <section
@@ -36,12 +38,11 @@ interface Props {
         </div>
         <div class="hidden md:flex flex-col">
           <a
-            href="mailto:info@pollux.com"
-            class="text-2xl md:text-base hover:underline">info@pollux.com</a
+            href={`mailto:${email}`}
+            class="text-2xl md:text-base hover:underline">{email}</a
           >
-          <a
-            href="tel:+46705327165"
-            class="text-2xl md:text-base hover:underline">+46 70 532 71 65</a
+          <a href={`tel:${phone}`} class="text-2xl md:text-base hover:underline"
+            >{phone}</a
           >
         </div>
       </div>

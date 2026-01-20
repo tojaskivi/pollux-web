@@ -116,9 +116,9 @@ export async function onRequestPost(context) {
 }
 
 /**
- * Strip HTML tags from text
+ * Strip HTML tags from text while preserving <br> tags
  * @param {string} text - Text that may contain HTML
- * @returns {string} Plain text without HTML tags
+ * @returns {string} Plain text with only <br> tags preserved
  */
 function stripHtml(text) {
   if (typeof text !== 'string') {
@@ -126,8 +126,12 @@ function stripHtml(text) {
   }
 
   return text
-    // Remove HTML tags
-    .replace(/<[^>]*>/g, '')
+    // Remove all HTML tags EXCEPT <br> and <br/>
+    .replace(/<(?!br\s*\/?)(?![\/]?br>)[^>]+>/gi, '')
+    // Normalize <br> tags to <br>
+    .replace(/<br\s*\/?>/gi, '<br>')
+    // Remove excessive consecutive <br> tags (more than 2)
+    .replace(/(<br>){3,}/gi, '<br><br>')
     // Decode common HTML entities
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
@@ -135,7 +139,7 @@ function stripHtml(text) {
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
-    // Trim whitespace
+    // Trim leading/trailing whitespace
     .trim()
     // Limit length to prevent abuse (optional)
     .substring(0, 10000);
