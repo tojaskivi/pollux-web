@@ -2,85 +2,85 @@
 
 /* Editable element styling */
 [contenteditable="true"] {
-  outline: 2px dashed #3b82f6;
+  outline: 1px dashed rgba(0, 0, 0, 0.3);
   outline-offset: 4px;
-  border-radius: 4px;
-  background-color: rgba(59, 130, 246, 0.05);
+  background-color: rgba(0, 0, 0, 0.02);
   transition: all 0.2s ease;
   cursor: text;
 }
 
 [contenteditable="true"]:hover {
-  outline-color: #2563eb;
-  background-color: rgba(59, 130, 246, 0.1);
+  outline-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 [contenteditable="true"]:focus {
-  outline: 2px solid #2563eb;
-  background-color: rgba(59, 130, 246, 0.15);
+  outline: 1px solid rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.06);
 }
 
-/* Save button */
-#save-button {
+/* Button container */
+#edit-button-container {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   z-index: 9999;
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  display: flex;
+  gap: 1rem;
+}
+
+/* Save button */
+#save-button {
+  padding: 0.875rem 2rem;
+  background: #000;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
 }
 
 #save-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  background: #1a1a1a;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
 }
 
 #save-button:active {
-  transform: translateY(0);
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 #save-button:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
 }
 
 /* Logout button */
 #logout-button {
-  position: fixed;
-  bottom: 2rem;
-  right: 12rem;
-  z-index: 9999;
-  padding: 1rem 2rem;
+  padding: 0.875rem 2rem;
   background: white;
-  color: #6b7280;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
 }
 
 #logout-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border-color: #d1d5db;
-  color: #374151;
+  background: #f8f8f8;
+  border-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 #logout-button:active {
-  transform: translateY(0);
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Notification */
@@ -90,26 +90,30 @@
   right: 2rem;
   z-index: 9999;
   padding: 1rem 1.5rem;
-  border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   animation: slideIn 0.3s ease;
+  backdrop-filter: blur(8px);
+  letter-spacing: 0.01em;
 }
 
 .edit-notification.success {
-  background-color: #10b981;
+  background-color: rgba(0, 0, 0, 0.9);
   color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .edit-notification.error {
-  background-color: #ef4444;
+  background-color: rgba(220, 38, 38, 0.95);
   color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .edit-notification.info {
-  background-color: #3b82f6;
+  background-color: rgba(0, 0, 0, 0.85);
   color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @keyframes slideIn {
@@ -130,10 +134,12 @@
   left: 2rem;
   z-index: 9999;
   padding: 0.5rem 1rem;
-  background-color: #f59e0b;
+  background-color: rgba(0, 0, 0, 0.85);
   color: white;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }

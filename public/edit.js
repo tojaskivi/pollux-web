@@ -94,22 +94,28 @@
     // Make elements editable
     editableElements.forEach(element => {
       element.contentEditable = 'true';
-      element.setAttribute('spellcheck', 'true');
+      // element.setAttribute('spellcheck', 'true');
     });
 
-    // Create save button
-    const saveButton = document.createElement('button');
-    saveButton.id = 'save-button';
-    saveButton.textContent = 'Save Changes';
-    saveButton.addEventListener('click', handleSave);
-    document.body.appendChild(saveButton);
+    // Create button container
+    const buttonContainer = document.createElement('div');
+    buttonContainer.id = 'edit-button-container';
 
     // Create logout button
     const logoutButton = document.createElement('button');
     logoutButton.id = 'logout-button';
     logoutButton.textContent = 'Logout';
     logoutButton.addEventListener('click', handleLogout);
-    document.body.appendChild(logoutButton);
+    buttonContainer.appendChild(logoutButton);
+
+    // Create save button
+    const saveButton = document.createElement('button');
+    saveButton.id = 'save-button';
+    saveButton.textContent = 'Save Changes';
+    saveButton.addEventListener('click', handleSave);
+    buttonContainer.appendChild(saveButton);
+
+    document.body.appendChild(buttonContainer);
 
     showNotification(`${editableElements.length} fields are now editable`, 'info');
   }

@@ -1,103 +1,136 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { heroImage } from "../assets/images";
+import { logo } from "../assets/icons";
+import { Image } from "astro:assets";
 ---
 
 <Layout>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-      <div>
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Admin Login
-        </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
-          Enter your credentials to edit the site
-        </p>
+  <div
+    class="min-h-screen relative flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+  >
+    <!-- Background Image -->
+    <Image
+      src={heroImage}
+      alt="Background"
+      width={1920}
+      height={1080}
+      class="absolute inset-0 w-full h-full object-cover -z-1"
+    />
+
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black/40 -z-1"></div>
+
+    <!-- Login Card -->
+    <div class="relative max-w-md w-full">
+      <!-- Logo -->
+      <div class="flex justify-center mb-12">
+        <Image src={logo} alt="Pollux Logo" width={0} height={64} />
       </div>
-      <form id="login-form" class="mt-8 space-y-6">
-        <div class="rounded-md shadow-sm -space-y-px">
+
+      <!-- Card -->
+      <div class="bg-white/95 backdrop-blur-sm p-8 sm:p-12">
+        <div class="mb-8">
+          <h2 class="text-3xl sm:text-4xl font-normal text-black mb-3">
+            Login
+          </h2>
+        </div>
+
+        <form id="login-form" class="space-y-6">
           <div>
-            <label for="username" class="sr-only">Username</label>
+            <label
+              for="username"
+              class="block text-sm font-medium text-black/70 mb-2"
+            >
+              Username
+            </label>
             <input
               id="username"
               name="username"
               type="text"
               autocomplete="username"
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-              placeholder="Username"
+              class="w-full px-4 py-3 bg-white border border-black/20 text-black placeholder-black/30 focus:outline-none focus:border-black transition-colors"
+              placeholder="Enter your username"
             />
           </div>
+
           <div>
-            <label for="password" class="sr-only">Password</label>
+            <label
+              for="password"
+              class="block text-sm font-medium text-black/70 mb-2"
+            >
+              Password
+            </label>
             <input
               id="password"
               name="password"
               type="password"
               autocomplete="current-password"
               required
-              class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-              placeholder="Password"
+              class="w-full px-4 py-3 bg-white border border-black/20 text-black placeholder-black/30 focus:outline-none focus:border-black transition-colors"
+              placeholder="Enter your password"
             />
           </div>
-        </div>
 
-        <div id="error-message" class="text-red-600 text-sm text-center hidden"></div>
+          <div id="error-message" class="text-red-600 text-sm hidden"></div>
 
-        <div>
           <button
             type="submit"
             id="submit-button"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            class="w-full bg-black text-white py-3 px-6 font-medium hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-colors"
           >
             Sign in
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </Layout>
 
 <script>
-  const form = document.getElementById('login-form') as HTMLFormElement;
-  const errorMessage = document.getElementById('error-message');
-  const submitButton = document.getElementById('submit-button') as HTMLButtonElement;
+  const form = document.getElementById("login-form") as HTMLFormElement;
+  const errorMessage = document.getElementById("error-message");
+  const submitButton = document.getElementById(
+    "submit-button",
+  ) as HTMLButtonElement;
 
   // Check if already authenticated on page load
   async function checkExistingSession() {
     try {
-      const response = await fetch('/api/verify');
+      const response = await fetch("/api/verify");
       const result = await response.json();
 
       if (result.authenticated) {
         // Already logged in, redirect to edit mode
-        window.location.href = '/?edit=true';
+        window.location.href = "/?edit=true";
       }
     } catch (error) {
       // Silently fail - user can still login normally
-      console.error('Session check failed:', error);
+      console.error("Session check failed:", error);
     }
   }
 
   // Run on page load
   checkExistingSession();
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData(form);
-    const username = formData.get('username') as string;
-    const password = formData.get('password') as string;
+    const username = formData.get("username") as string;
+    const password = formData.get("password") as string;
 
     // Clear previous errors
-    errorMessage?.classList.add('hidden');
+    errorMessage?.classList.add("hidden");
     submitButton.disabled = true;
-    submitButton.textContent = 'Signing in...';
+    submitButton.textContent = "Signing in...";
 
     try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
+      const response = await fetch("/api/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
       });
@@ -106,15 +139,16 @@ import Layout from "../layouts/Layout.astro";
 
       if (response.ok && result.success) {
         // Redirect to edit mode
-        window.location.href = '/?edit=true';
+        window.location.href = "/?edit=true";
       } else {
-        throw new Error(result.error || 'Login failed');
+        throw new Error(result.error || "Login failed");
       }
     } catch (error) {
-      errorMessage!.textContent = error instanceof Error ? error.message : 'Login failed';
-      errorMessage?.classList.remove('hidden');
+      errorMessage!.textContent =
+        error instanceof Error ? error.message : "Login failed";
+      errorMessage?.classList.remove("hidden");
       submitButton.disabled = false;
-      submitButton.textContent = 'Sign in';
+      submitButton.textContent = "Sign in";
     }
   });
 </script>
