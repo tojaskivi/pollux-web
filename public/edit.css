@@ -54,6 +54,35 @@
   transform: none;
 }
 
+/* Logout button */
+#logout-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 12rem;
+  z-index: 9999;
+  padding: 1rem 2rem;
+  background: white;
+  color: #6b7280;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+#logout-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+#logout-button:active {
+  transform: translateY(0);
+}
+
 /* Notification */
 .edit-notification {
   position: fixed;

@@ -6,14 +6,16 @@
  * Saves content updates to D1 database and triggers site redeploy
  */
 
+import { verifyAdminSession } from '../utils/auth.js';
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
   try {
-    // 1. Validate ADMIN_TOKEN
-    const token = request.headers.get('X-Admin-Token');
+    // 1. Verify admin session
+    const user = await verifyAdminSession(request, env);
 
-    if (!token || token !== env.ADMIN_TOKEN) {
+    if (!user) {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), {
         status: 401,
         headers: { 'Content-Type': 'application/json' }

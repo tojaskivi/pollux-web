@@ -16,20 +16,42 @@
   editCSS.href = '/edit.css';
   document.head.appendChild(editCSS);
 
-  // Get or prompt for admin token
-  let adminToken = sessionStorage.getItem('admin_token');
+  // Verify authentication before enabling edit mode
+  verifyAuthAndInit();
 
-  if (!adminToken) {
-    adminToken = prompt('Enter ADMIN_TOKEN to enable editing:');
-    if (!adminToken) {
-      alert('Admin token required for editing mode');
-      return;
+  async function verifyAuthAndInit() {
+    try {
+      const response = await fetch('/api/verify');
+
+      if (!response.ok) {
+        showNotification('Authentication check failed. Please try again.', 'error');
+        setTimeout(() => {
+          window.location.href = '/admin';
+        }, 2000);
+        return;
+      }
+
+      const result = await response.json();
+
+      if (!result.authenticated) {
+        // Not authenticated, redirect to login
+        showNotification('Please login to edit this page', 'info');
+        setTimeout(() => {
+          window.location.href = '/admin';
+        }, 1500);
+        return;
+      }
+
+      // User is authenticated, initialize edit mode
+      initEditMode();
+    } catch (error) {
+      console.error('Authentication verification failed:', error);
+      showNotification('Authentication check failed. Please try again.', 'error');
+      setTimeout(() => {
+        window.location.href = '/admin';
+      }, 2000);
     }
-    sessionStorage.setItem('admin_token', adminToken);
   }
-
-  // Initialize edit mode
-  initEditMode();
 
   function htmlToPlainText(element) {
     // Get innerHTML and clean it up, preserving <br> tags
@@ -82,6 +104,13 @@
     saveButton.addEventListener('click', handleSave);
     document.body.appendChild(saveButton);
 
+    // Create logout button
+    const logoutButton = document.createElement('button');
+    logoutButton.id = 'logout-button';
+    logoutButton.textContent = 'Logout';
+    logoutButton.addEventListener('click', handleLogout);
+    document.body.appendChild(logoutButton);
+
     showNotification(`${editableElements.length} fields are now editable`, 'info');
   }
 
@@ -107,21 +136,19 @@
         throw new Error('No content to save');
       }
 
-      // Send to API
+      // Send to API (auth via cookie)
       const response = await fetch('/api/save', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'X-Admin-Token': adminToken
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(updates)
+        body: JSON.stringify(updates),
+        credentials: 'same-origin' // Include cookies
       });
 
       if (!response.ok) {
         if (response.status === 401) {
-          // Clear invalid token
-          sessionStorage.removeItem('admin_token');
-          throw new Error('Invalid admin token. Please refresh and try again.');
+          throw new Error('Session expired. Please login again.');
         }
         throw new Error(`Save failed: ${response.status} ${response.statusText}`);
       }
@@ -146,6 +173,25 @@
       showNotification(`✗ Error: ${error.message}`, 'error');
       saveButton.disabled = false;
       saveButton.textContent = 'Save Changes';
+    }
+  }
+
+  async function handleLogout() {
+    try {
+      const response = await fetch('/api/logout', {
+        method: 'POST',
+        credentials: 'same-origin'
+      });
+
+      if (response.ok) {
+        // Redirect to home page (without edit mode)
+        window.location.href = '/';
+      } else {
+        throw new Error('Logout failed');
+      }
+    } catch (error) {
+      console.error('Logout error:', error);
+      showNotification('Logout failed', 'error');
     }
   }
 
