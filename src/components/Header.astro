@@ -15,27 +15,29 @@ interface Props {
 >
   <!-- Desktop Navigation -->
   <nav class="hidden md:grid grid-cols-[170px_170px_170px] items-center">
-    <a href="#" class="text-white mix-blend-difference py-1">Pollux</a>
-    <a href="#services" class="text-white mix-blend-difference py-1"
-      >Konsulterande</a
-    >
-    <a href="#clients" class="text-white mix-blend-difference py-1">Kunder</a>
-    <a href="#about" class="col-start-2 text-white mix-blend-difference py-1"
-      >Om Pollux</a
-    >
-    <a href="#contact" class="text-white mix-blend-difference py-1">Kontakt</a>
+    <a href="#" class="text-white w-fit">Pollux</a>
+    <a href="#services" class="text-white w-fit">Konsulterande</a>
+    <a href="#clients" class="text-white w-fit">Kunder</a>
+    <a href="#about" class="col-start-2 text-white w-fit">Om Pollux</a>
+    <a href="#contact" class="text-white w-fit">Kontakt</a>
   </nav>
 
   <!-- Mobile Menu Button -->
   <button
     id="mobile-menu-button"
-    class="md:hidden text-white mix-blend-difference z-50"
+    class="md:hidden text-white z-50"
     aria-label="Toggle menu"
   >
-    <Image src={menuIcon} alt="Menu" width={24} height={24} />
+    <Image class="w-full" src={menuIcon} alt="Menu" width={27} height={24} />
   </button>
 
-  <Image src={logo} alt="Pollux Logo" width={0} height={54} />
+  <Image
+    src={logo}
+    class="h-[40px] md:h-[54px] w-auto"
+    alt="Pollux Logo"
+    width={0}
+    height={0}
+  />
 </header>
 
 <!-- Mobile Menu Overlay -->
@@ -48,7 +50,7 @@ interface Props {
     <button id="mobile-menu-close" class="text-black" aria-label="Close menu">
       <Image src={closeIcon} alt="Close" width={32} height={32} />
     </button>
-    <Image src={logo} alt="Pollux Logo" width={0} height={54} class="invert" />
+    <Image src={logo} alt="Pollux Logo" width={0} height={40} class="invert" />
   </div>
 
   <!-- Navigation -->

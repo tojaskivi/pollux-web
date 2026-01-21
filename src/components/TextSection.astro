@@ -3,6 +3,7 @@ interface Props {
   textSectionHeading?: string;
   textSectionContent: string;
   grayBackground?: boolean;
+  whiteBackgroundOnMobile?: boolean;
   pageName: string;
   headingEditableKey?: string;
   contentEditableKey?: string;
@@ -11,6 +12,7 @@ const {
   textSectionHeading,
   textSectionContent,
   grayBackground,
+  whiteBackgroundOnMobile = false,
   pageName,
   headingEditableKey,
   contentEditableKey,
@@ -19,20 +21,21 @@ const {
 
 <div
   class:list={[
-    "grid sm:grid-cols-[170px_1fr] md:gap-x-0 sm:pr-8 gap-x-4 grid-cols-[auto_1fr] gap-4 py-4 pb-16 px-4",
-    { "bg-custom-gray": grayBackground },
+    "grid grid-cols-[1fr_1fr] sm:grid-cols-[170px_1fr] md:gap-x-0 sm:pr-8 gap-x-4 grid-cols-[auto_1fr] gap-4 py-4 pb-16 px-4",
+    { "bg-custom-gray": grayBackground && !whiteBackgroundOnMobile },
+    { "bg-white sm:bg-[#f4f4f4]": whiteBackgroundOnMobile },
   ]}
 >
   <p class="text-sm">Pollux</p>
   <p class="text-sm">{pageName}</p>
-  <div class="sm:col-start-2 col-span-2 mt-4">
+  <div class="col-start-2 col-span-2 mt-4">
     {
       textSectionHeading && (
         <h2 data-editable={headingEditableKey} set:html={textSectionHeading} />
       )
     }
     <p
-      class="sm:text-2xl"
+      class="large"
       data-editable={contentEditableKey}
       set:html={textSectionContent}
     />

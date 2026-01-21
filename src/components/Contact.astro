@@ -21,7 +21,7 @@ const {
 } = Astro.props;
 ---
 
-<section id="contact" class="min-h-screen bg-custom-gray">
+<section id="contact" class="min-h-screen bg-white sm:bg-[#f4f4f4]">
   <PageHeader
     altText="Contact Image"
     headingText={heading}
@@ -31,9 +31,28 @@ const {
     headingEditableKey="contact_heading"
     subHeadingEditableKey="contact_subheading"
   />
-  <TextSection textSectionContent={""} grayBackground={true} pageName="Kontakt">
-    <p class="text-4xl" data-editable="contact_name" set:html={contactName} />
-    <p class="text-4xl" data-editable="contact_email" set:html={contactEmail} />
-    <p class="text-4xl" data-editable="contact_phone" set:html={contactPhone} />
+  <TextSection
+    textSectionContent={""}
+    grayBackground={true}
+    whiteBackgroundOnMobile={true}
+    pageName="Kontakt"
+  >
+    <div>
+      <p
+        class="text-[24px] sm:text-[42px] leading-[1.2]"
+        data-editable="contact_name"
+        set:html={contactName}
+      />
+      <p
+        class="text-[24px] sm:text-[42px] leading-[1.2]"
+        data-editable="contact_email"
+        set:html={contactEmail}
+      />
+      <p
+        class="text-[24px] sm:text-[42px] leading-[1.2]"
+        data-editable="contact_phone"
+        set:html={contactPhone}
+      />
+    </div>
   </TextSection>
 </section>

@@ -21,17 +21,17 @@ const {
     height={1080}
     class="absolute inset-0 w-full h-full object-cover -z-1"
   />
-  <div class="flex items-center gap-4 mr-4 sm:mr-8 min-h-screen pt-[30vh] pl-4">
-    <div class="sm:grid grid-cols-[170px_1fr] max-w-full">
+  <div class="flex items-end gap-4 pb-16 mr-4 sm:mr-8 min-h-screen pl-4">
+    <div class="md:grid grid-cols-[170px_1fr] max-w-full">
       <Image
         src={logomark}
         alt="Pollux Logomark"
         width={0}
         height={0}
-        class="w-24 h-auto sm:ml-auto flex-shrink-0 mr-4"
+        class="w-24 h-auto md:ml-auto -mt-5 lg:-mt-3 flex-shrink-0 mr-4"
       />
       <h1
-        class="text-white max-w-full text-[48px] md:text-[72px] lg:text-[96px] mt-2 sm:mt-0"
+        class="text-white max-w-full text-[48px] md:text-[72px] lg:text-[96px] mt-2 md:mt-0"
         data-editable="hero_title"
         set:html={title}
       />

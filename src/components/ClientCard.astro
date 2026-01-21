@@ -7,6 +7,7 @@ interface Props {
   imageSrc: ImageMetadata;
   headingEditableKey?: string;
   contentEditableKey?: string;
+  large?: boolean;
 }
 
 const {
@@ -15,17 +16,23 @@ const {
   imageSrc,
   headingEditableKey,
   contentEditableKey,
+  large = false,
 } = Astro.props;
 ---
 
 <article>
-  <Image
-    class="h-24 w-auto object-contain"
-    src={imageSrc}
-    alt=""
-    width={600}
-    height={0}
-  />
+  <div class="md:h-[100px] flex items-end">
+    <Image
+      class={large
+        ? "h-16 md:h-[100px] w-fit object-contain"
+        : "h-16 md:h-[72px] w-fit object-contain"}
+      src={imageSrc}
+      alt=""
+      width={600}
+      height={0}
+    />
+  </div>
+
   <h3 class="mt-4" data-editable={headingEditableKey} set:html={heading} />
   <p class="" data-editable={contentEditableKey} set:html={cardContent} />
 </article>

@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-@theme {
-}
-
 :root {
   --brand-color: #ed6751;
   --bg-gray: #f4f4f4;
@@ -30,7 +27,8 @@ html {
   }
 
   h1 {
-    @apply text-[32px] md:text-[48px] lg:text-[72px] xl:text-[82px] leading-[1.02] font-normal mb-4;
+    /* @apply text-[32px] sm:text-[48px] md:text-[82px] leading-[1.02] font-normal mb-4; */
+    @apply text-[32px] sm:text-[64px] md:text-[82px] leading-[1.02] font-normal mb-4;
     color: var(--brand-color);
     font-family: var(--font-heading);
     word-wrap: break-word;
@@ -38,8 +36,7 @@ html {
   }
 
   h2 {
-    /* Mobile: 28px, Tablet: 36px, Desktop: 42px */
-    @apply text-[28px] md:text-[36px] lg:text-[42px] leading-[1.19] font-normal mb-3;
+    @apply text-[24px] sm:text-[42px] leading-[1.19] font-normal mb-0;
     color: var(--brand-color);
     font-family: var(--font-heading);
   }
@@ -47,7 +44,7 @@ html {
   h3 {
     /* Mobile: 20px, Tablet: 24px, Desktop: 28px */
     /* Fixed line-height to 32px (was 23px) to prevent overlap */
-    @apply text-[20px] md:text-[24px] lg:text-[28px] leading-[32px] font-normal mb-2;
+    @apply text-[24px] md:text-[28px] leading-[32px] font-normal mb-0;
     color: var(--brand-color);
   }
 
@@ -60,10 +57,13 @@ html {
       "Segoe UI",
       system-ui,
       sans-serif;
-    font-size: 18px;
+    @apply text-[14px] leading-[1.25] sm:text-[18px] sm:leading-[1.2];
     font-style: normal;
     font-weight: 400;
-    line-height: 22px;
+  }
+
+  p.large {
+    @apply text-[14px] leading-[1.25] sm:text-[28px] sm:leading-[1.2];
   }
 }
 
