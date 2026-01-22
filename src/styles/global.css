@@ -24,8 +24,6 @@ html {
     @apply hover:underline;
   }
   body {
-    /* Fix max width */
-    max-width: 1920px;
     background-color: #1d1d1b;
     margin: auto !important;
   }
