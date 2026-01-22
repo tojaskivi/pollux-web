@@ -1,5 +1,15 @@
 ---
 import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Pollux - Projektledning för industriprojekt",
+  description = "En drivande kraft genom hela investeringsprojektets alla faser. Resultat börjar med människor.",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -7,10 +17,11 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="https://use.typekit.net/pfq2sqe.css" />
     <meta name="generator" content={Astro.generator} />
-    <title>Pollux</title>
+    <title>{title}</title>
   </head>
   <body>
     <slot />
