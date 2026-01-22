@@ -13,6 +13,8 @@
     const header = document.getElementById("main-header");
     if (!header) return;
 
+    const mobileMenu = document.getElementById("mobile-menu");
+
     // Scroll tracking variables
     let lastScrollY = window.scrollY;
     let scrollAccumulator = 0;
@@ -53,6 +55,11 @@
         if (scrollAccumulator >= 100 && !isProgrammaticScroll) {
           // Hide header after 100px of downward scroll
           header.style.transform = "translateY(-100%)";
+
+          // Also close mobile menu overlay if it's open (mobile only)
+          if (mobileMenu && window.innerWidth < 768) {
+            mobileMenu.classList.add("-translate-y-full");
+          }
         }
       } else if (scrollDelta < 0) {
         // Scrolling up - show header immediately and reset
@@ -131,5 +138,21 @@
         startProgrammaticScroll();
       });
     }
+
+    // Click handlers for mobile navigation - same behavior as desktop
+    const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        // Check if it's the contact link
+        if (link.getAttribute("href") === "#contact") {
+          header.setAttribute("data-header-state", "contact-active");
+        } else {
+          header.setAttribute("data-header-state", "default");
+        }
+        header.style.transform = "translateY(0)";
+        scrollAccumulator = 0;
+        startProgrammaticScroll();
+      });
+    });
   }
 })();

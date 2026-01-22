@@ -72,6 +72,23 @@
   filter: invert(1);
 }
 
+/* Contact-active state - transparent bg, black mobile menu button, inverted logo */
+#main-header[data-header-state="contact-active"] {
+  background-color: transparent;
+}
+
+#main-header[data-header-state="contact-active"] #mobile-menu-button {
+  color: black;
+}
+
+#main-header[data-header-state="contact-active"] #mobile-menu-button img {
+  filter: invert(1);
+}
+
+#main-header[data-header-state="contact-active"] .header-logo-full {
+  filter: invert(1);
+}
+
 /* Desktop only states */
 @media (min-width: 768px) {
   /* Contact-active state - transparent bg, black text, show full logo inverted */
