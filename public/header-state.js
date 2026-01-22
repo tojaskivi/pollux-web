@@ -18,26 +18,39 @@
     let scrollAccumulator = 0;
     let ticking = false;
 
-    // Flag for tracking nav link clicks
-    let navLinkClicked = false;
+    // Programmatic scroll tracking
+    let isProgrammaticScroll = false;
+    let scrollEndTimeout = null;
+
+    function startProgrammaticScroll() {
+      isProgrammaticScroll = true;
+      clearTimeout(scrollEndTimeout);
+      // Fallback timeout in case scrollend doesn't fire (older browsers)
+      scrollEndTimeout = setTimeout(() => {
+        isProgrammaticScroll = false;
+      }, 2000);
+    }
+
+    function endProgrammaticScroll() {
+      isProgrammaticScroll = false;
+      clearTimeout(scrollEndTimeout);
+      // Reset accumulator to prevent immediate hiding after programmatic scroll
+      scrollAccumulator = 0;
+      // Reset lastScrollY to prevent spurious state changes from residual scroll events
+      lastScrollY = window.scrollY;
+    }
 
     // Update header visibility and state based on scroll
     function updateHeader() {
       const currentScrollY = window.scrollY;
       const scrollDelta = currentScrollY - lastScrollY;
 
-      // Handle nav link click + scroll down scenario
-      if (navLinkClicked && scrollDelta > 0) {
-        header.setAttribute("data-header-state", "default");
-        header.style.transform = "translateY(0)";
-        navLinkClicked = false;
-      }
-
       if (scrollDelta > 0) {
         // Scrolling down - accumulate distance
         scrollAccumulator += scrollDelta;
 
-        if (scrollAccumulator >= 100) {
+        // Only hide header if NOT during programmatic scroll
+        if (scrollAccumulator >= 100 && !isProgrammaticScroll) {
           // Hide header after 100px of downward scroll
           header.style.transform = "translateY(-100%)";
         }
@@ -46,12 +59,15 @@
         header.style.transform = "translateY(0)";
         scrollAccumulator = 0;
 
-        // Set scrolled-up state when past 100px (applies to both mobile and desktop)
-        if (currentScrollY > 100) {
-          header.setAttribute("data-header-state", "scrolled-up");
-        } else if (currentScrollY <= 100) {
-          // At top of page, return to default
-          header.setAttribute("data-header-state", "default");
+        // Only update state if NOT during programmatic scroll
+        if (!isProgrammaticScroll) {
+          // Set scrolled-up state when past 100px (applies to both mobile and desktop)
+          if (currentScrollY > 100) {
+            header.setAttribute("data-header-state", "scrolled-up");
+          } else if (currentScrollY <= 100) {
+            // At top of page, return to default
+            header.setAttribute("data-header-state", "default");
+          }
         }
       }
 
@@ -69,6 +85,19 @@
 
     // Setup scroll listener
     window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Detect when smooth scroll completes
+    window.addEventListener("scrollend", endProgrammaticScroll, { passive: true });
+
+    // Detect manual scroll initiation - user interrupted programmatic scroll
+    function onManualScrollStart() {
+      if (isProgrammaticScroll) {
+        endProgrammaticScroll();
+      }
+    }
+
+    window.addEventListener("wheel", onManualScrollStart, { passive: true });
+    window.addEventListener("touchstart", onManualScrollStart, { passive: true });
 
     // Initialize state on load based on current scroll position
     if (window.scrollY <= 100) {
@@ -88,11 +117,7 @@
           header.setAttribute("data-header-state", "default");
           header.style.transform = "translateY(0)";
           scrollAccumulator = 0;
-          navLinkClicked = true;
-          // Reset flag after 1 second
-          setTimeout(() => {
-            navLinkClicked = false;
-          }, 1000);
+          startProgrammaticScroll();
         });
       }
     });
@@ -103,6 +128,7 @@
         header.setAttribute("data-header-state", "contact-active");
         header.style.transform = "translateY(0)";
         scrollAccumulator = 0;
+        startProgrammaticScroll();
       });
     }
   }
