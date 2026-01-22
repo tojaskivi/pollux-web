@@ -11,12 +11,12 @@ const { email, phone } = Astro.props;
 
 <section
   id="footer"
-  class="py-4 px-4 bg-gray-50 min-h-[60dvh] bg-brand text-black relative"
+  class="py-4 px-4 md:px-8 bg-gray-50 min-h-[60dvh] bg-brand text-black relative"
 >
   <footer>
     <div class="flex justify-between">
       <div class="hidden md:block">
-        Copyright © {new Date().getFullYear()} Pollux
+        Copyright ©{new Date().getFullYear()} Pollux
       </div>
       <div class="grid md:grid-cols-[auto_auto_auto] md:gap-8">
         <div>
@@ -46,7 +46,7 @@ const { email, phone } = Astro.props;
     <Image
       src={logo}
       alt={""}
-      class="right-4 bottom-4 absolute invert h-[40px] w-auto"
+      class="right-4 bottom-4 md:right-8 md:bottom-8 absolute invert h-[40px] w-auto"
     />
   </footer>
 </section>

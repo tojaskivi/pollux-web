@@ -24,8 +24,8 @@ const {
   <div class="md:h-[100px] flex flex-col justify-center">
     <Image
       class={large
-        ? "h-16 md:h-[96px] w-fit object-contain"
-        : "h-12 md:h-[72px] w-fit object-contain md:mt-4"}
+        ? "h-16 md:h-22 w-fit object-contain"
+        : "h-12 md:h-16 w-fit object-contain md:mt-4"}
       src={imageSrc}
       alt=""
       width={600}
@@ -33,6 +33,10 @@ const {
     />
   </div>
 
-  <h3 class="mt-4" data-editable={headingEditableKey} set:html={heading} />
+  <h3
+    class="mt-4 md:mt-0"
+    data-editable={headingEditableKey}
+    set:html={heading}
+  />
   <p class="" data-editable={contentEditableKey} set:html={cardContent} />
 </article>
