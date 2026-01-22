@@ -32,7 +32,7 @@ INSERT OR REPLACE INTO content (key, value) VALUES
 -- Contact Section
 INSERT OR REPLACE INTO content (key, value) VALUES
   ('contact_heading', 'Kontakt'),
-  ('contact_subheading', 'För mer information om hur vi kan hjälpa er.'),
+  ('contact_subheading', 'För mer information om hur vi kan hjälpa ert projekt.'),
   ('contact_name', 'VD, Olle Bjurström'),
   ('contact_email', 'olle@pollux.se'),
   ('contact_phone', '070-532 71 65');
