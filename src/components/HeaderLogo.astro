@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import { logo, logomark } from "../assets/icons";
+---
+
+<div class="header-logo-container">
+  <Image
+    src={logo}
+    class="header-logo-full h-[40px] md:h-[54px] w-auto md:pr-4"
+    alt="Pollux Logo"
+    width={0}
+    height={0}
+  />
+  <Image
+    src={logomark}
+    class="header-logo-mark h-[40px] md:h-[54px] w-auto md:pr-4 invert"
+    alt="Pollux"
+    width={0}
+    height={0}
+  />
+</div>

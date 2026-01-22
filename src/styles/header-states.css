@@ -1,0 +1,74 @@
+/* Header State Management Styles */
+
+/* Smooth transitions for background and color */
+#main-header {
+  transition: background-color 300ms ease-in-out, transform 300ms ease-in-out;
+}
+
+.desktop-nav-link {
+  transition: color 300ms ease-in-out;
+}
+
+/* Logo switching - Default: show full logo */
+.header-logo-full {
+  display: block;
+}
+
+.header-logo-mark {
+  display: none;
+}
+
+/* Default state - transparent bg, white text */
+#main-header[data-header-state="default"] {
+  background-color: transparent;
+}
+
+#main-header[data-header-state="default"] .desktop-nav-link {
+  color: white;
+}
+
+/* Scrolled-up state - white bg, black text, show logomark (applies to both mobile and desktop) */
+#main-header[data-header-state="scrolled-up"] {
+  background-color: white;
+}
+
+#main-header[data-header-state="scrolled-up"] .desktop-nav-link {
+  color: black;
+}
+
+#main-header[data-header-state="scrolled-up"] .header-logo-full {
+  display: none;
+}
+
+#main-header[data-header-state="scrolled-up"] .header-logo-mark {
+  display: block;
+}
+
+/* Mobile menu button in scrolled-up state - invert icon to make it black */
+#main-header[data-header-state="scrolled-up"] #mobile-menu-button {
+  color: black;
+}
+
+#main-header[data-header-state="scrolled-up"] #mobile-menu-button img {
+  filter: invert(1);
+}
+
+/* Desktop only states */
+@media (min-width: 768px) {
+  /* Contact-active state - transparent bg, black text, show logomark */
+  #main-header[data-header-state="contact-active"] {
+    background-color: transparent;
+  }
+
+  #main-header[data-header-state="contact-active"] .desktop-nav-link {
+    color: black;
+  }
+
+  #main-header[data-header-state="contact-active"] .header-logo-full {
+    display: none;
+  }
+
+  #main-header[data-header-state="contact-active"] .header-logo-mark {
+    display: block;
+  }
+}

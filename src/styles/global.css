@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./header-states.css";
 
 :root {
   --brand-color: #ed6751;
